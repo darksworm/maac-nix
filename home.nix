@@ -25,6 +25,12 @@
     pkgs.direnv
     pkgs.zoxide
     pkgs.btop
+    pkgs.wget
+    pkgs.jq
+    pkgs.ffmpeg
+    pkgs.kcat
+    pkgs.readline
+    pkgs.trivy
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -168,6 +174,9 @@
       k9s = "~/homebrew/bin/k9s";
       kubens = "~/homebrew/bin/kubens";
       kubectx = "~/homebrew/bin/kubectx";
+      kubelogin = "~/homebrew/bin/kubelogin";
+      kubernetes-cli = "~/homebrew/bin/kubernetes-cli";
+      ca-certificates = "~/homebrew/bin/ca-certificates";
 
       # perhaps brew can be ultimately deleted?
       brew = "~/homebrew/bin/brew";
