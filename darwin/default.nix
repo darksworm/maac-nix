@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  #imports = [ ./homebrew.nix ./skhd.nix ./yabai.nix ];
+  # imports = [ ./skhd.nix ];
 
   # environment = {
   #   variables = {
