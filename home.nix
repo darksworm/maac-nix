@@ -154,8 +154,20 @@
 
     shellAliases = {
       dc = "docker compose";
-      nu = "${toString ./bin/build}";
+      nu = "( cd ~/.config/nix-darwin && ./bin/build )";
       htop = "btop";
+
+      vim = "nvim";
+      v = "nvim";
+
+      # apps to be migrated to nix
+      yabai = "~/homebrew/bin/yabai";
+      idea = "~/homebrew/bin/idea";
+      jenv = "~/homebrew/bin/jenv";
+      nvim = "~/homebrew/bin/nvim";
+
+      # perhaps brew can be ultimately deleted?
+      brew = "~/homebrew/bin/brew";
     };
 
     plugins = [
