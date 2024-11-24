@@ -15,17 +15,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
-        ];
-
-      # sudo with touch id (wow)
-      security.pam.enableSudoTouchIdAuth = true;
-      # to permit the sudo touchid also in tmux
-      environment.etc."pam.d/sudo_local".text = ''
-        # Managed by Nix Darwin
-        auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
-        auth       sufficient     pam_tid.so
-      '';
+        [ pkgs.vim ];
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -47,12 +37,6 @@
           name = "ilmars";
           home = "/Users/ilmars";
       };
-
-      system.defaults = {
-        dock.mru-spaces = false;
-        loginwindow.LoginwindowText = "Some fries, motherfucker";
-        screensaver.askForPasswordDelay = 5;
-      };
     };
   in
   {
@@ -60,6 +44,7 @@
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."maac" = nix-darwin.lib.darwinSystem {
       modules = [ 
+          ./darwin
           configuration
           home-manager.darwinModules.home-manager
           {
