@@ -5,72 +5,73 @@
   services.skhd = {
     enable = true;
 
+    # TODO: the yabai path should be rectified once yabai is migrated
     skhdConfig = ''
       #change focus between external displays (left and right)
-      lalt - s: yabai -m display --focus west
-      lalt - g: yabai -m display --focus east
+      lalt - s: /Users/ilmars/homebrew/bin/yabai -m display --focus west
+      lalt - g: /Users/ilmars/homebrew/bin/yabai -m display --focus east
 
       cmd - return : alacritty
       lalt - c : osascript -e 'tell application "Arc" to make new window'
 
-      shift + lalt - 0 : yabai -m space --balance
-      shift + lalt - h : yabai -m window --resize left:-20:0
-      shift + lalt - l : yabai -m window --resize right:20:0
+      shift + lalt - 0 : /Users/ilmars/homebrew/bin/yabai -m space --balance
+      shift + lalt - h : /Users/ilmars/homebrew/bin/yabai -m window --resize left:-20:0
+      shift + lalt - l : /Users/ilmars/homebrew/bin/yabai -m window --resize right:20:0
 
       # move managed window
-      shift + cmd - h : yabai -m window --warp west
-      shift + cmd - l : yabai -m window --warp east
-      shift + cmd - j : yabai -m window --warp south
-      shift + cmd - k : yabai -m window --warp north
+      shift + cmd - h : /Users/ilmars/homebrew/bin/yabai -m window --warp west
+      shift + cmd - l : /Users/ilmars/homebrew/bin/yabai -m window --warp east
+      shift + cmd - j : /Users/ilmars/homebrew/bin/yabai -m window --warp south
+      shift + cmd - k : /Users/ilmars/homebrew/bin/yabai -m window --warp north
 
       # move window to space #
-      shift + lalt - 1 : yabai -m window --space 1;
-      shift + lalt - 2 : yabai -m window --space 2;
-      shift + lalt - 3 : yabai -m window --space 3;
-      shift + lalt - 4 : yabai -m window --space 4;
-      shift + lalt - 5 : yabai -m window --space 5;
-      shift + lalt - 6 : yabai -m window --space 6;
-      shift + lalt - 7 : yabai -m window --space 7;
-      shift + lalt - 7 : yabai -m window --space 8;
+      shift + lalt - 1 : /Users/ilmars/homebrew/bin/yabai -m window --space 1;
+      shift + lalt - 2 : /Users/ilmars/homebrew/bin/yabai -m window --space 2;
+      shift + lalt - 3 : /Users/ilmars/homebrew/bin/yabai -m window --space 3;
+      shift + lalt - 4 : /Users/ilmars/homebrew/bin/yabai -m window --space 4;
+      shift + lalt - 5 : /Users/ilmars/homebrew/bin/yabai -m window --space 5;
+      shift + lalt - 6 : /Users/ilmars/homebrew/bin/yabai -m window --space 6;
+      shift + lalt - 7 : /Users/ilmars/homebrew/bin/yabai -m window --space 7;
+      shift + lalt - 7 : /Users/ilmars/homebrew/bin/yabai -m window --space 8;
 
-      lalt - 1 : yabai -m space --focus 1
-      lalt - 2 : yabai -m space --focus 2
-      lalt - 3 : yabai -m space --focus 3
-      lalt - 4 : yabai -m space --focus 4
-      lalt - 5 : yabai -m space --focus 5
-      lalt - 6 : yabai -m space --focus 6
-      lalt - 7 : yabai -m space --focus 7
-      lalt - 8 : yabai -m space --focus 8
+      lalt - 1 : /Users/ilmars/homebrew/bin/yabai -m space --focus 1
+      lalt - 2 : /Users/ilmars/homebrew/bin/yabai -m space --focus 2
+      lalt - 3 : /Users/ilmars/homebrew/bin/yabai -m space --focus 3
+      lalt - 4 : /Users/ilmars/homebrew/bin/yabai -m space --focus 4
+      lalt - 5 : /Users/ilmars/homebrew/bin/yabai -m space --focus 5
+      lalt - 6 : /Users/ilmars/homebrew/bin/yabai -m space --focus 6
+      lalt - 7 : /Users/ilmars/homebrew/bin/yabai -m space --focus 7
+      lalt - 8 : /Users/ilmars/homebrew/bin/yabai -m space --focus 8
 
-      lalt - j : yabai -m window --focus south
-      lalt - k : yabai -m window --focus north
-      lalt - h : yabai -m window --focus west
-      lalt - l : yabai -m window --focus east
+      lalt - j : /Users/ilmars/homebrew/bin/yabai -m window --focus south
+      lalt - k : /Users/ilmars/homebrew/bin/yabai -m window --focus north
+      lalt - h : /Users/ilmars/homebrew/bin/yabai -m window --focus west
+      lalt - l : /Users/ilmars/homebrew/bin/yabai -m window --focus east
 
       # move window and split
-      ctrl + lalt - j : yabai -m window --warp south
-      ctrl + lalt - k : yabai -m window --warp north
-      ctrl + lalt - h : yabai -m window --warp west
-      ctrl + lalt - l : yabai -m window --warp east
+      ctrl + lalt - j : /Users/ilmars/homebrew/bin/yabai -m window --warp south
+      ctrl + lalt - k : /Users/ilmars/homebrew/bin/yabai -m window --warp north
+      ctrl + lalt - h : /Users/ilmars/homebrew/bin/yabai -m window --warp west
+      ctrl + lalt - l : /Users/ilmars/homebrew/bin/yabai -m window --warp east
 
-      shift + lalt - h : yabai -m window --swap north
-      shift + lalt - l : yabai -m window --swap north
+      shift + lalt - h : /Users/ilmars/homebrew/bin/yabai -m window --swap north
+      shift + lalt - l : /Users/ilmars/homebrew/bin/yabai -m window --swap north
 
-      lalt - f : yabai -m window --toggle zoom-fullscreen
+      lalt - f : /Users/ilmars/homebrew/bin/yabai -m window --toggle zoom-fullscreen
 
       # toggle window split type
-      lalt - e : yabai -m window --toggle split
+      lalt - e : /Users/ilmars/homebrew/bin/yabai -m window --toggle split
 
       # float / unfloat window and center on screen
-      lalt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+      lalt - t : /Users/ilmars/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:2:2
 
-      lalt + shift - q : yabai -m window --close
+      lalt + shift - q : /Users/ilmars/homebrew/bin/yabai -m window --close
 
       ## things maybe useful
 
       # focus monitor
-      # ctrl + lalt - z  : yabai -m display --focus prev
-      # ctrl + lalt - 3  : yabai -m display --focus 3
+      # ctrl + lalt - z  : /Users/ilmars/homebrew/bin/yabai -m display --focus prev
+      # ctrl + lalt - 3  : /Users/ilmars/homebrew/bin/yabai -m display --focus 3
     '';
   };
 }
