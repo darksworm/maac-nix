@@ -138,5 +138,52 @@
     '';
   };
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false;
+
+    autosuggestion = {
+      enable = true;
+    };
+
+    history = {
+      size = 10000;
+      extended = true;
+    };
+
+    shellAliases = {
+      dc = "docker compose";
+    };
+
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k-config;
+        file = "p10k.zsh";
+      }
+    ];
+  };
+
+  programs.zsh.prezto = {
+    enable = true;
+    color = true;
+
+    pmodules = [
+      "syntax-highlighting"
+      "terminal"
+      "environment"
+      "autosuggestions"
+      "completion"
+      "utility"
+    ];
+
+    editor.keymap = "vi";
+  };
+
   home.file.".hushlogin".text = "";
 }
