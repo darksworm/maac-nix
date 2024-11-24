@@ -24,6 +24,7 @@
     pkgs.ripgrep
     pkgs.dash
     pkgs.direnv
+    pkgs.zoxide
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -163,8 +164,13 @@
       }
       {
         name = "powerlevel10k-config";
-        src = ./p10k-config;
+        src = ./zsh-config;
         file = "p10k.zsh";
+      }
+      {
+        name = "dev";
+        src = ./zsh-config;
+        file = "dev.zsh";
       }
     ];
   };
