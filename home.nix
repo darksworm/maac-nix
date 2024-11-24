@@ -165,6 +165,9 @@
       idea = "~/homebrew/bin/idea";
       jenv = "~/homebrew/bin/jenv";
       nvim = "~/homebrew/bin/nvim";
+      k9s = "~/homebrew/bin/k9s";
+      kubens = "~/homebrew/bin/kubens";
+      kubectx = "~/homebrew/bin/kubectx";
 
       # perhaps brew can be ultimately deleted?
       brew = "~/homebrew/bin/brew";
