@@ -10,8 +10,7 @@
       lalt - s: yabai -m display --focus west
       lalt - g: yabai -m display --focus east
 
-      cmd - return : echo "Using the shell: $SHELL" > /tmp/skhd_test.log
-      # cmd - return : /etc/profiles/per-user/ilmars/bin/alacritty
+      cmd - return : alacritty
       lalt - c : osascript -e 'tell application "Arc" to make new window'
 
       shift + lalt - 0 : yabai -m space --balance
