@@ -18,13 +18,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.htop
     pkgs.alacritty
     pkgs.tmux
     pkgs.ripgrep
     pkgs.dash
     pkgs.direnv
     pkgs.zoxide
+    pkgs.btop
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -155,6 +155,7 @@
     shellAliases = {
       dc = "docker compose";
       nu = "${toString ./bin/build}";
+      htop = "btop";
     };
 
     plugins = [
