@@ -31,6 +31,7 @@
     pkgs.kcat
     pkgs.readline
     pkgs.trivy
+    pkgs.go
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
