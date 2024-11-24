@@ -23,6 +23,7 @@
     pkgs.tmux
     pkgs.ripgrep
     pkgs.dash
+    pkgs.direnv
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
