@@ -154,6 +154,7 @@
 
     shellAliases = {
       dc = "docker compose";
+      nu = "${toString ./bin/build}";
     };
 
     plugins = [

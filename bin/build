@@ -1,3 +1,5 @@
-#/bin/sh
+#/bin/dash
+
+cd "$(dirname "$0")/.."
 
 nix run --extra-experimental-features "nix-command flakes" nix-darwin -- switch --flake .
