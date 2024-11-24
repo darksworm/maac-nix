@@ -1,0 +1,3 @@
+#/bin/sh
+
+nix run --extra-experimental-features "nix-command flakes" nix-darwin -- switch --flake .
