@@ -169,7 +169,6 @@
       v = "nvim";
 
       # apps to be migrated to nix
-      fnm = "~/homebrew/bin/fnm";
       yabai = "~/homebrew/bin/yabai";
       idea = "~/homebrew/bin/idea";
       jenv = "~/homebrew/bin/jenv";
