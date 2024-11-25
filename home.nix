@@ -32,6 +32,7 @@
     pkgs.readline
     pkgs.trivy
     pkgs.go
+    pkgs.fnm
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -168,6 +169,7 @@
       v = "nvim";
 
       # apps to be migrated to nix
+      fnm = "~/homebrew/bin/fnm";
       yabai = "~/homebrew/bin/yabai";
       idea = "~/homebrew/bin/idea";
       jenv = "~/homebrew/bin/jenv";
