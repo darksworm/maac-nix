@@ -8,8 +8,6 @@
   #   };
   # };
 
-  # programs = { zsh.enable = true; }; #TODO: manage zsh via nix
-
   services = {
     # FIXME: driver issues
     #karabiner-elements.enable = false;

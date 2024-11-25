@@ -104,20 +104,11 @@
           y = 12;
         };
       };
-
-      terminal = {
-        shell = {
-          program = "/bin/zsh"; # TODO: install zsh via nix
-          args = ["-l"];
-        };
-      };
     };
   };
 
   programs.tmux = {
     enable = true;
-
-    shell = "/bin/zsh"; # TODO: install zsh via nix
     baseIndex = 1;
     prefix = "C-a";
 
@@ -129,7 +120,7 @@
     ];
 
     extraConfig = ''
-      set -g default-command /bin/zsh  # TODO: install zsh via nix
+      set -g default-command ${pkgs.zsh}/bin/zsh
 
       set -g mouse on
 

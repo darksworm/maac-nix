@@ -1,4 +1,5 @@
-- [ ] yabai
+- [ ] brew
+- [ ] yabai / possibly migrate to aerospace
 - [ ] make the dock fully disappear
 - [ ] bootstrap git
 - [ ] bootstarp ssh

@@ -36,6 +36,7 @@
       users.users.ilmars = {
           name = "ilmars";
           home = "/Users/ilmars";
+          shell = pkgs.zsh;
       };
     };
   in
