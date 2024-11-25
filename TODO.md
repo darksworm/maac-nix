@@ -5,6 +5,7 @@
 - [ ] nixvim
 - [ ] launchagent to clear docker logs on boot
 - [ ] k8s utils
+- [ ] theme k9s
 - [ ] jenv
 - [ ] idea
 - [ ] raycast
