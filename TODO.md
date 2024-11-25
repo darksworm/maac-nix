@@ -19,5 +19,6 @@
 - [ ] 1password
 - [ ] jetbrains toolbox
 - [ ] datagrip
+- [ ] finish migrating zsh
 
 for each: can the plugins / config be applied as well?
