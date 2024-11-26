@@ -65,7 +65,14 @@
 
           brews = [ 
               "neovim" 
-              "koekeishiya/formulae/yabai" 
+              "koekeishiya/formulae/yabai"
+
+              # k8s crap for work
+              "kubernetes-cli"
+              "kubectx"
+              "kubelogin"
+              "k9s"
+              "krew"
           ];
 
           casks = [ 
