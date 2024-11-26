@@ -64,11 +64,18 @@
           enable = true;
 
           brews = [ 
-		"neovim" 
-		"koekeishiya/formulae/yabai" 
-	  ];
+              "neovim" 
+              "koekeishiya/formulae/yabai" 
+          ];
 
-	  casks = [ "datagrip" "flameshot" "jetbrains-toolbox" "jordanbaird-ice" "raycast" "spaceman" ];
+          casks = [ 
+            "datagrip" 
+            "flameshot" 
+            "jetbrains-toolbox" 
+            "jordanbaird-ice" 
+            "raycast" 
+            "spaceman"
+          ];
       };
     };
   in
