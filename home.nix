@@ -160,19 +160,19 @@
       v = "nvim";
 
       # apps to be migrated to nix
-      yabai = "~/homebrew/bin/yabai";
-      idea = "~/homebrew/bin/idea";
-      jenv = "~/homebrew/bin/jenv";
-      nvim = "~/homebrew/bin/nvim";
-      k9s = "~/homebrew/bin/k9s";
-      kubens = "~/homebrew/bin/kubens";
-      kubectx = "~/homebrew/bin/kubectx";
-      kubelogin = "~/homebrew/bin/kubelogin";
-      kubernetes-cli = "~/homebrew/bin/kubernetes-cli";
-      ca-certificates = "~/homebrew/bin/ca-certificates";
+      #yabai = "~/homebrew/bin/yabai";
+      #idea = "~/homebrew/bin/idea";
+      #jenv = "~/homebrew/bin/jenv";
+      #nvim = "~/homebrew/bin/nvim";
+      #k9s = "~/homebrew/bin/k9s";
+      #kubens = "~/homebrew/bin/kubens";
+      #kubectx = "~/homebrew/bin/kubectx";
+      #kubelogin = "~/homebrew/bin/kubelogin";
+      #kubernetes-cli = "~/homebrew/bin/kubernetes-cli";
+      #ca-certificates = "~/homebrew/bin/ca-certificates";
 
-      # perhaps brew can be ultimately deleted?
-      brew = "~/homebrew/bin/brew";
+      ## perhaps brew can be ultimately deleted?
+      #brew = "~/homebrew/bin/brew";
     };
 
     plugins = [
