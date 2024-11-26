@@ -66,7 +66,13 @@
           brews = [ 
             # some basic utils
             "readline"
+            "telnet"
+            "nmap"
+            "watch"
+            "pwgen"
+            "ncdu"
 
+            # you're my heart, you're my soul
             "neovim" 
             "koekeishiya/formulae/yabai"
 
@@ -97,6 +103,7 @@
             "awscli"
             "atool"
             "git-absorb"
+            "gh"
           ];
 
           casks = [ 
