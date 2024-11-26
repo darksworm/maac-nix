@@ -64,15 +64,39 @@
           enable = true;
 
           brews = [ 
-              "neovim" 
-              "koekeishiya/formulae/yabai"
+            # some basic utils
+            "readline"
 
-              # k8s crap for work
-              "kubernetes-cli"
-              "kubectx"
-              "kubelogin"
-              "k9s"
-              "krew"
+            "neovim" 
+            "koekeishiya/formulae/yabai"
+
+            # version switchers
+            "fnm"
+            "jenv"
+
+            # bunch of java versions
+            "openjdk@11"
+            "openjdk@17"
+            "openjdk@21"
+
+            # k8s crap for work
+            "kubernetes-cli"
+            "kubectx"
+            "kubelogin"
+            "k9s"
+            "krew"
+            "trivy"
+
+            # useful utils for development
+            "mkcert"
+            "dive"
+            "cryptography"
+            "cmake"
+            "ninja"
+            "ca-certificates"
+            "awscli"
+            "atool"
+            "git-absorb"
           ];
 
           casks = [ 
