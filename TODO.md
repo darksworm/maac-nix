@@ -21,5 +21,7 @@
 - [ ] jetbrains toolbox
 - [ ] datagrip
 - [ ] finish migrating zsh
+- [ ] zoxide
+- [ ] docker
 
 for each: can the plugins / config be applied as well?

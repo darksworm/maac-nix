@@ -24,9 +24,14 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+
+    koekeishiya-formulae = {
+      url = "github:koekeishiya/homebrew-formulae";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -54,6 +59,17 @@
           home = "/Users/ilmars";
           shell = pkgs.zsh;
       };
+
+      homebrew = {
+          enable = true;
+
+          brews = [ 
+		"neovim" 
+		"koekeishiya/formulae/yabai" 
+	  ];
+
+	  casks = [ "datagrip" "flameshot" "jetbrains-toolbox" "jordanbaird-ice" "raycast" "spaceman" ];
+      };
     };
   in
   {
@@ -73,7 +89,7 @@
             }
 
           nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; })
+            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; })
       ];
     };
   };

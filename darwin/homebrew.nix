@@ -1,5 +1,4 @@
-{ nixpkgs, homebrew-core, homebrew-cask, homebrew-bundle, ... }: 
-
+{ nixpkgs, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ... }: 
 {
   nix-homebrew = {
     # Install Homebrew under the default prefix
@@ -16,6 +15,7 @@
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
+      "koekeishiya/homebrew-formulae" = koekeishiya-formulae;
     };
 
     # Optional: Enable fully-declarative tap management
