@@ -68,8 +68,6 @@
             "neovim" 
             "koekeishiya/formulae/yabai"
 
-            "jenv"
-
             # bunch of java versions
             "openjdk@11"
             "openjdk@17"
@@ -90,6 +88,7 @@
           casks = [ 
             "datagrip" 
             "jetbrains-toolbox" 
+            "intellij-idea"
             "jordanbaird-ice" 
             "raycast" 
             "spaceman"
