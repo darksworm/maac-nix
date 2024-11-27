@@ -7,6 +7,7 @@
 - [ ] k8s utils
 - [ ] theme k9s
 - [ ] strategy to update brew pkgs
+- [ ] slack
 
 - [ ] migrate to aerospace
 OR
