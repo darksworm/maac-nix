@@ -64,20 +64,10 @@
           enable = true;
 
           brews = [ 
-            # some basic utils
-            "readline"
-            "telnet"
-            "nmap"
-            "watch"
-            "pwgen"
-            "ncdu"
-
             # you're my heart, you're my soul
             "neovim" 
             "koekeishiya/formulae/yabai"
 
-            # version switchers
-            "fnm"
             "jenv"
 
             # bunch of java versions
@@ -91,24 +81,14 @@
             "kubelogin"
             "k9s"
             "krew"
-            "trivy"
 
-            # useful utils for development
-            "mkcert"
-            "dive"
-            "cryptography"
-            "cmake"
-            "ninja"
+            "telnet"
             "ca-certificates"
-            "awscli"
-            "atool"
-            "git-absorb"
-            "gh"
+            "cryptography"
           ];
 
           casks = [ 
             "datagrip" 
-            "flameshot" 
             "jetbrains-toolbox" 
             "jordanbaird-ice" 
             "raycast" 

@@ -1,5 +1,5 @@
 - [ ] yabai / possibly migrate to aerospace
-- [ ] make the dock fully disappear
+- [ ] make the dock fully disappear # meh it doesn't really bother me
 - [ ] bootstrap git
 - [ ] bootstarp ssh
 - [ ] nixvim
