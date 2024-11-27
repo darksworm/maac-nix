@@ -91,8 +91,9 @@
             "jetbrains-toolbox"
             "intellij-idea"
             "jordanbaird-ice"
-            "raycast"
             "spaceman"
+            "arc"
+            "1password"
           ];
       };
     };
