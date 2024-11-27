@@ -94,6 +94,7 @@
             "spaceman"
             "arc"
             "1password"
+            "flux"
           ];
       };
     };

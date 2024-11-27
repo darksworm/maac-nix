@@ -1,12 +1,11 @@
+- [ ] karabiner-elements (or fully custom kb layout)
+- [ ] docker
 - [ ] bootstrap git
 - [ ] bootstarp ssh
 - [ ] nixvim
 - [ ] launchagent to clear docker logs on boot
 - [ ] k8s utils
 - [ ] theme k9s
-- [ ] karabiner-elements (or fully custom kb layout)
-- [ ] f.lux
-- [ ] docker
 
 - [ ] migrate to aerospace
 OR
@@ -26,6 +25,7 @@ OR
 - [x] arc-browser # going to stay in brew
 - [x] 1password # going to stay in brew
 - [x] al dente
+- [x] f.lux # going to stay in brew
 
 
 - [ ] for each: can the plugins / config be applied as well?
