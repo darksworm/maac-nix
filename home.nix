@@ -32,7 +32,6 @@
     pkgs.readline
     pkgs.trivy
     pkgs.go
-    pkgs.fnm
     pkgs.nmap
     pkgs.watch
     pkgs.pwgen
