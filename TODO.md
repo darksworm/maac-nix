@@ -1,4 +1,3 @@
-- [ ] yabai / possibly migrate to aerospace
 - [ ] make the dock fully disappear # meh it doesn't really bother me
 - [ ] bootstrap git
 - [ ] bootstarp ssh
@@ -7,20 +6,27 @@
 - [ ] k8s utils
 - [ ] theme k9s
 - [ ] jenv
-- [ ] idea
-- [ ] raycast
 - [ ] arc-browser
 - [ ] ice (the menu bar thing)
 - [ ] karabiner-elements (or fully custom kb layout)
-- [ ] flameshot
 - [ ] spaceman
 - [ ] al dente
 - [ ] f.lux
 - [ ] 1password
-- [ ] jetbrains toolbox
-- [ ] datagrip
-- [ ] finish migrating zsh
-- [ ] zoxide
 - [ ] docker
 
-for each: can the plugins / config be applied as well?
+- [ ] migrate to aerospace
+OR
+- [ ] yabairc into nix
+
+- [x] yabai # going to stay in brew
+- [x] flameshot
+- [x] zoxide
+- [x] jetbrains toolbox # going to stay in brew
+- [x] datagrip # going to stay in brew
+- [x] finish migrating zsh
+- [x] idea / going to stay in brew https://github.com/NixOS/nixpkgs/issues/84263
+- [x] raycast # going to stay in brew because version in nixpkgs is outdated
+
+
+- [ ] for each: can the plugins / config be applied as well?

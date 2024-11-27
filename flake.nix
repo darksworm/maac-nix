@@ -53,6 +53,7 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
 
       users.users.ilmars = {
           name = "ilmars";
@@ -85,12 +86,12 @@
             "cryptography"
           ];
 
-          casks = [ 
-            "datagrip" 
-            "jetbrains-toolbox" 
+          casks = [
+            "datagrip"
+            "jetbrains-toolbox"
             "intellij-idea"
-            "jordanbaird-ice" 
-            "raycast" 
+            "jordanbaird-ice"
+            "raycast"
             "spaceman"
           ];
       };

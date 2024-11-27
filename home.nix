@@ -48,6 +48,10 @@
     pkgs.direnv
     pkgs.zoxide
     pkgs.fnm
+
+    pkgs.flameshot
+
+    pkgs.arc-browser
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
