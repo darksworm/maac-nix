@@ -81,7 +81,6 @@
             "k9s"
             "krew"
 
-            "telnet"
             "ca-certificates"
             "cryptography"
           ];
