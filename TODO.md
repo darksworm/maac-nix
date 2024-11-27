@@ -6,6 +6,7 @@
 - [ ] launchagent to clear docker logs on boot
 - [ ] k8s utils
 - [ ] theme k9s
+- [ ] strategy to update brew pkgs
 
 - [ ] migrate to aerospace
 OR
