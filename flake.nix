@@ -94,6 +94,7 @@
             "arc"
             "1password"
             "flux"
+            "slack"
           ];
       };
     };
