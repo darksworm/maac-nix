@@ -8,6 +8,10 @@
 - [ ] theme k9s
 - [ ] strategy to update brew pkgs
 - [ ] slack
+- [ ] add Oil to nvim
+'''
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+'''
 
 - [ ] migrate to aerospace
 OR
