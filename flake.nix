@@ -85,6 +85,10 @@
             "cryptography"
           ];
 
+          caskArgs = {
+            no_quarantine = true;
+          };
+
           casks = [
             "datagrip"
             "jetbrains-toolbox"

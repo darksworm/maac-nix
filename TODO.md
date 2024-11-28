@@ -7,7 +7,6 @@
 - [ ] k8s utils
 - [ ] theme k9s
 - [ ] strategy to update brew pkgs
-- [x] slack
 - [ ] add Oil to nvim
 '''
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
@@ -17,6 +16,8 @@ vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 OR
 - [ ] yabairc into nix
 
+- [x] trust stuff installed by brew automatically
+- [x] slack
 - [x] flameshot
 - [x] zoxide
 - [x] finish migrating zsh
