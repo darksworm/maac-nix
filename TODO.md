@@ -5,7 +5,7 @@
 - [ ] nixvim
 - [ ] launchagent to clear docker logs on boot
 - [ ] k8s utils
-- [ ] theme k9s
+- [ ] theme k9s https://github.com/hbjydev/hnix/blob/4971f268a95d146463aa41e70687cc0249710f02/users/hayden/dev/k9s.nix#L3
 - [ ] strategy to update brew pkgs
 - [ ] add Oil to nvim
 '''
