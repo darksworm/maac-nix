@@ -1,5 +1,4 @@
 - [ ] karabiner-elements (or fully custom kb layout)
-- [ ] docker
 - [ ] bootstrap git
 - [ ] bootstarp ssh
 - [ ] nixvim
@@ -33,6 +32,7 @@ OR
 - [x] 1password # going to stay in brew
 - [x] al dente
 - [x] f.lux # going to stay in brew
+- [x] docker # will remain in brew. colima doesn't forward ports :shrug:
 
 
 - [ ] for each: can the plugins / config be applied as well?

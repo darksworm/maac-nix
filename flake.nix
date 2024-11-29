@@ -90,6 +90,7 @@
           };
 
           casks = [
+            "docker"
             "datagrip"
             "jetbrains-toolbox"
             "intellij-idea"

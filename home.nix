@@ -162,6 +162,8 @@
       vim = "nvim";
       v = "nvim";
 
+      "docker-compose" = "docker compose";
+
       # apps to be migrated to nix
       #yabai = "~/homebrew/bin/yabai";
       #idea = "~/homebrew/bin/idea";
