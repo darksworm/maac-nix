@@ -57,6 +57,7 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/aerospace/aerospace.toml".source = config/aerospace.toml;
   };
 
   # You can also manage environment variables but you will have to manually

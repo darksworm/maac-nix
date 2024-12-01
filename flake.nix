@@ -29,9 +29,14 @@
       url = "github:koekeishiya/homebrew-formulae";
       flake = false;
     };
+
+    nikitabobko-tap = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, nikitabobko-tap, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -122,6 +127,7 @@
             "slack"
             "firefox@developer-edition"
             "karabiner-elements"
+            "nikitabobko/tap/aerospace"
           ];
       };
     };
@@ -136,7 +142,7 @@
           configuration
 
           nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; })
+            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; inherit nikitabobko-tap; })
 
           home-manager.darwinModules.home-manager
             {
