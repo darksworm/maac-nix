@@ -18,20 +18,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.ncdu
-    pkgs.tmux
-    pkgs.ripgrep
     pkgs.dash
-    pkgs.inetutils
     pkgs.ninja
     pkgs.cmake
     pkgs.atool
     pkgs.go
-    pkgs.nmap
-    pkgs.watch
-    pkgs.wget
-    pkgs.jq
-    pkgs.readline
 
     pkgs.alacritty
     pkgs.ffmpeg
@@ -44,7 +35,6 @@
     pkgs.dive
     pkgs.mkcert
 
-    pkgs.btop
     pkgs.direnv
     pkgs.zoxide
     pkgs.fnm

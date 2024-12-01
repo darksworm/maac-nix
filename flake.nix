@@ -36,7 +36,19 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages = [ pkgs.vim ];
+      environment.systemPackages = [
+          pkgs.vim
+          pkgs.nmap
+          pkgs.watch
+          pkgs.wget
+          pkgs.jq
+          pkgs.readline
+          pkgs.inetutils
+          pkgs.tmux
+          pkgs.ncdu
+          pkgs.ripgrep
+          pkgs.btop
+      ];
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
