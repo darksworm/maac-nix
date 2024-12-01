@@ -64,6 +64,12 @@
       homebrew = {
           enable = true;
 
+          onActivation = {
+            autoUpdate = true;
+            cleanup = "uninstall";
+            upgrade = true;
+          };
+
           brews = [ 
             # you're my heart, you're my soul
             "neovim" 
@@ -83,6 +89,8 @@
 
             "ca-certificates"
             "cryptography"
+
+            "jenv"
           ];
 
           caskArgs = {
@@ -100,6 +108,7 @@
             "1password"
             "flux"
             "slack"
+            "firefox@developer-edition"
           ];
       };
     };
@@ -113,15 +122,15 @@
 
           configuration
 
+          nix-homebrew.darwinModules.nix-homebrew 
+            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; })
+
           home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.ilmars = import ./home.nix;
             }
-
-          nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; })
       ];
     };
   };

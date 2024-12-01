@@ -1,6 +1,6 @@
 # home.nix
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -83,6 +83,22 @@
     # EDITOR = "emacs";
   };
 
+  home.activation = {
+    syncJenvVersions = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ -f /opt/homebrew/bin/brew ]; then
+        echo -e "Syncing JDK versions into jenv..."
+
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        brew list --formula |\
+                grep openjdk |\
+                xargs -I {} -n1 jenv add /opt/homebrew/opt/{}
+
+        echo -e "Done syncing JDK versions into jenv."
+      fi
+    '';
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -163,21 +179,6 @@
       v = "nvim";
 
       "docker-compose" = "docker compose";
-
-      # apps to be migrated to nix
-      #yabai = "~/homebrew/bin/yabai";
-      #idea = "~/homebrew/bin/idea";
-      #jenv = "~/homebrew/bin/jenv";
-      #nvim = "~/homebrew/bin/nvim";
-      #k9s = "~/homebrew/bin/k9s";
-      #kubens = "~/homebrew/bin/kubens";
-      #kubectx = "~/homebrew/bin/kubectx";
-      #kubelogin = "~/homebrew/bin/kubelogin";
-      #kubernetes-cli = "~/homebrew/bin/kubernetes-cli";
-      #ca-certificates = "~/homebrew/bin/ca-certificates";
-
-      ## perhaps brew can be ultimately deleted?
-      #brew = "~/homebrew/bin/brew";
     };
 
     plugins = [
