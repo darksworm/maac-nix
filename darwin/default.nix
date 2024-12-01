@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./skhd.nix ];
+  #imports = [ ./skhd.nix ];
 
   # environment = {
   #   variables = {
