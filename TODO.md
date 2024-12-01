@@ -9,10 +9,10 @@
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 '''
 
-- [ ] migrate to aerospace
-OR
-- [ ] yabairc into nix
+## EXPERIMENTAL SHIT
+- [ ] try aerospace
 
+- [x] yabairc into nix
 - [x] launchagent to clear docker logs on boot
 - [x] trust stuff installed by brew automatically
 - [x] slack
