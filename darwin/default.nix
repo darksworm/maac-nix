@@ -24,6 +24,22 @@
     auth       sufficient     pam_tid.so
   '';
 
+  launchd = {
+    user = {
+      agents = {
+        clear-logs = {
+          command = "/Users/ilmars/Dev/devenv/bin/clear-logs";
+          serviceConfig = {
+            KeepAlive = false;
+            RunAtLoad = true;
+            StandardOutPath = "/tmp/clear-logs.out.log";
+            StandardErrorPath = "/tmp/clear-logs.err.log";
+          };
+        };
+      };
+    };
+  };
+
   system = {
     keyboard = {
       enableKeyMapping = true;
