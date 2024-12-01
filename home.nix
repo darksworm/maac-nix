@@ -76,7 +76,7 @@
 
   home.activation = {
     syncJenvVersions = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ -f /opt/homebrew/bin/brew ]; then
+      ( if [ -f /opt/homebrew/bin/brew ]; then
         echo -e "Syncing JDK versions into jenv..."
 
         eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -86,11 +86,11 @@
                 xargs -I {} -n1 jenv add /opt/homebrew/opt/{}
 
         echo -e "Done syncing JDK versions into jenv."
-      fi
+      fi )
     '';
 
-    allowYabaiLoadSA = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ -f /opt/homebrew/bin/brew ]; then
+    allowYabaiLoadSA = lib.hm.dag.entryAfter ["syncJenvVersions"] ''
+      ( if [ -f /opt/homebrew/bin/brew ]; then
         echo -e "Checking yabai load-sa permissions..."
 
         eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -113,7 +113,7 @@
         echo "$SUDOERS_ENTRY" | /usr/bin/sudo tee "$SUDOERS_FILE" > /dev/null
 
         echo -e "Yabai load-sa permissions have been updated."
-      fi
+      fi )
     '';
   };
 
