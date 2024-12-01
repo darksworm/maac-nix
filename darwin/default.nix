@@ -9,8 +9,6 @@
   # };
 
   services = {
-    # FIXME: driver issues
-    #karabiner-elements.enable = false;
     nix-daemon.enable = true;
   };
 

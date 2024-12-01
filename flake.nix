@@ -121,6 +121,7 @@
             "flux"
             "slack"
             "firefox@developer-edition"
+            "karabiner-elements"
           ];
       };
     };
