@@ -5,12 +5,10 @@
 - [ ] launchagent to clear docker logs on boot
 - [ ] k8s utils
 - [ ] theme k9s https://github.com/hbjydev/hnix/blob/4971f268a95d146463aa41e70687cc0249710f02/users/hayden/dev/k9s.nix#L3
-- [ ] strategy to update brew pkgs
 - [ ] add Oil to nvim
 '''
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 '''
-- [ ] jenv to add the java versions
 
 - [ ] migrate to aerospace
 OR
@@ -34,6 +32,8 @@ OR
 - [x] al dente
 - [x] f.lux # going to stay in brew
 - [x] docker # will remain in brew. colima doesn't forward ports :shrug:
+- [x] strategy to update brew pkgs
+- [x] jenv to add the java versions
 
 
 - [ ] for each: can the plugins / config be applied as well?
