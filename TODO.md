@@ -1,4 +1,3 @@
-- [ ] karabiner-elements (or fully custom kb layout)
 - [ ] bootstrap git
 - [ ] bootstarp ssh
 - [ ] nixvim
@@ -8,10 +7,13 @@
 '''
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 '''
+- [ ] pull all github repos
 
-## EXPERIMENTAL SHIT
+## EXPERIMENTAL
 - [ ] try aerospace
 
+## DONE
+- [x] karabiner-elements (or fully custom kb layout)
 - [x] yabairc into nix
 - [x] launchagent to clear docker logs on boot
 - [x] trust stuff installed by brew automatically
