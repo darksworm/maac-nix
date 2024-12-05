@@ -48,6 +48,7 @@
           pkgs.ncdu
           pkgs.ripgrep
           pkgs.btop
+          pkgs.fzf
       ];
 
       # Necessary for using flakes on this system.
@@ -114,6 +115,7 @@
             "datagrip"
             "jetbrains-toolbox"
             "intellij-idea"
+            "obs"
             "jordanbaird-ice"
             "spaceman"
             "arc"
