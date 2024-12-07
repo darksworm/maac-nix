@@ -250,26 +250,32 @@
 
   home.file.".hushlogin".text = "";
 
-  home.file.".docker/daemon.json".text = ''{
-    "builder": {
-      "gc": {
-        "defaultKeepStorage": "20GB",
-        "enabled": true
-      }
-    },
-    "default-address-pools": [
+  home.file.".docker/daemon.json" = {
+      text = ''
       {
-        "base": "172.240.0.0/8",
-        "size": 24
+        "builder": {
+          "gc": {
+            "defaultKeepStorage": "20GB",
+            "enabled": true
+          }
+        },
+        "default-address-pools": [
+          {
+            "base": "172.240.0.0/8",
+            "size": 24
+          }
+        ],
+        "experimental": false,
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-file": "3",
+          "max-size": "2m"
+        }
       }
-    ],
-    "experimental": false,
-    "log-driver": "json-file",
-    "log-opts": {
-      "max-file": "3",
-      "max-size": "2m"
-    }
-  }'';
+      '';
+
+      force = true;
+  };
 
   home.file.".config/yabai/yabairc".text = ''
     yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"

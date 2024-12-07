@@ -49,6 +49,8 @@
           pkgs.ripgrep
           pkgs.btop
           pkgs.fzf
+          pkgs.podman
+          pkgs.websocat
       ];
 
       # Necessary for using flakes on this system.
