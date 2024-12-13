@@ -126,6 +126,7 @@
             "slack"
             "firefox@developer-edition"
             "karabiner-elements"
+            "spotify"
           ];
       };
     };
