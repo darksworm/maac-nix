@@ -96,16 +96,16 @@
             "openjdk@21"
 
             # k8s crap for work
-            "kubernetes-cli"
-            "kubectx"
-            "kubelogin"
-            "k9s"
-            "krew"
+            #"kubernetes-cli"
+            #"kubelogin"
+            #"k9s"
+            #"krew"
 
             "ca-certificates"
             "cryptography"
 
             "jenv"
+            "pyenv"
           ];
 
           caskArgs = {

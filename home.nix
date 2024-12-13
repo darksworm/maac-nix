@@ -42,6 +42,10 @@
     pkgs.flameshot
     pkgs.raycast
     pkgs.aldente
+
+    pkgs.kubectl
+    pkgs.kubelogin
+    pkgs.kubelogin-oidc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -72,6 +76,17 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
+  imports = [
+    ./dev
+  ];
+
+  # home.file."~/.kube/config" = {
+  #   source = "${pkgs.fetchgit {
+  #     url = "git+ssh://git@github.com:ilmarspenneo/nix-work.git";
+  #     rev = "main";
+  #   }}/kubeconfig";
+  # };
 
   home.activation = {
     syncJenvVersions = lib.hm.dag.entryAfter ["writeBoundary"] ''
