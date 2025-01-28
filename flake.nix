@@ -48,7 +48,9 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
           pkgs.vim
+          pkgs.stow
           pkgs.neofetch
+          pkgs.blueutil
           pkgs.nmap
           pkgs.watch
           pkgs.wget
