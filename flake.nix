@@ -34,9 +34,14 @@
       url = "github:oven-sh/homebrew-bun";
       flake = false;
     };
+
+    nikitabobko-tap = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -93,7 +98,6 @@
           brews = [ 
             # you're my heart, you're my soul
             "neovim" 
-            "koekeishiya/formulae/yabai"
 
             # bunch of java versions
             "openjdk@11"
@@ -127,7 +131,6 @@
             "intellij-idea"
             "obs"
             "jordanbaird-ice"
-            "spaceman"
             "arc"
             "1password"
             "flux"
@@ -138,6 +141,7 @@
             "private-internet-access"
 
             "kopiaui"
+            "nikitabobko/tap/aerospace"
           ];
       };
     };
@@ -152,7 +156,7 @@
           configuration
 
           nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; inherit ovensh-bun; })
+            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; inherit ovensh-bun; inherit nikitabobko-tap; })
 
           home-manager.darwinModules.home-manager
             {

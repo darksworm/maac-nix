@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  imports = [ ./skhd.nix ];
-
   # environment = {
   #   variables = {
   #     EDITOR = "nvim";

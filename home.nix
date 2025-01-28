@@ -66,6 +66,7 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/aerospace/aerospace.toml".source = config/aerospace.toml;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -105,33 +106,6 @@
                 xargs -I {} -n1 jenv add /opt/homebrew/opt/{}
 
         echo -e "Done syncing JDK versions into jenv."
-      fi )
-    '';
-
-    allowYabaiLoadSA = lib.hm.dag.entryAfter ["syncJenvVersions"] ''
-      ( if [ -f /opt/homebrew/bin/brew ]; then
-        echo -e "Checking yabai load-sa permissions..."
-
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-
-        YABAI_PATH=$(command -v yabai)
-
-        SUDOERS_ENTRY="$(whoami) ALL=(root) NOPASSWD: sha256:$(/usr/bin/shasum -a 256 $YABAI_PATH | cut -d " " -f 1) $YABAI_PATH --load-sa"
-
-        SUDOERS_FILE="/private/etc/sudoers.d/yabai"
-
-        if [[ -f "$SUDOERS_FILE" ]]; then
-            EXISTING_CONTENT=$(cat "$SUDOERS_FILE")
-
-            if [[ "$EXISTING_CONTENT" == "$SUDOERS_ENTRY" ]]; then
-                echo "yabai load-sa already configured. not making changes."
-                exit 0
-            fi
-        fi
-
-        echo "$SUDOERS_ENTRY" | /usr/bin/sudo tee "$SUDOERS_FILE" > /dev/null
-
-        echo -e "Yabai load-sa permissions have been updated."
       fi )
     '';
   };
@@ -296,46 +270,6 @@
 
       force = true;
   };
-
-  home.file.".config/yabai/yabairc".text = ''
-    yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-    sudo yabai --load-sa
-
-    yabai -m config layout bsp
-    yabai -m config window_placement second_child
-    yabai -m config top_padding 4
-    yabai -m config bottom_padding 4
-    yabai -m config left_padding 4
-    yabai -m config right_padding 4
-    yabai -m config window_gap 4
-    yabai -m config window_origin_display focused
-
-    # center mouse on window with focus
-    yabai -m config mouse_follows_focus on
-
-    # modifier for clicking and dragging with mouse
-    yabai -m config mouse_modifier alt
-    # set modifier + left-click drag to move window
-    yabai -m config mouse_action1 move
-    # set modifier + right-click drag to resize window
-    yabai -m config mouse_action2 resize
-
-
-    # when window is dropped in center of another window, swap them (on edges it will split it)
-    yabai -m mouse_drop_action swap
-
-    yabai -m rule --add app="^System Settings$" manage=off
-    yabai -m rule --add app="^Calculator$" manage=off
-    yabai -m rule --add app="^Karabiner-Elements$" manage=off
-
-    yabai -m config mouse_follows_focus          off
-    yabai -m config focus_follows_mouse          autofocus
-
-    yabai -m rule --add app="Riot Client" sticky=on manage=off
-    yabai -m rule --add app="League of Legends" sticky=on manage=off
-    yabai -m rule --add app="CameraController" sticky=on manage=off
-    yabai -m rule --add app="^Discord$" manage=off grid=6:4:1:1:2:4
-  '';
 
   home.file.".config/karabiner/karabiner.json".text = ''{
     "profiles": [

@@ -1,4 +1,4 @@
-{ nixpkgs, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, ... }: 
+{ nixpkgs, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, ... }: 
 {
   nix-homebrew = {
     # Install Homebrew under the default prefix
@@ -17,6 +17,7 @@
       "homebrew/homebrew-bundle" = homebrew-bundle;
       "koekeishiya/homebrew-formulae" = koekeishiya-formulae;
       "oven-sh/homebrew-bun" = ovensh-bun;
+      "nikitabobko/homebrew-tap" = nikitabobko-tap;
     };
 
     # Optional: Enable fully-declarative tap management
