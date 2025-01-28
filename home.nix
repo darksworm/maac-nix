@@ -24,13 +24,18 @@
     pkgs.atool
     pkgs.go
 
+    # git gud
+    pkgs.gh
+    pkgs.git-absorb
+    pkgs.mr
+
+    # tty
     pkgs.alacritty
+
     pkgs.ffmpeg
     pkgs.kcat
     pkgs.trivy
     pkgs.pwgen
-    pkgs.gh
-    pkgs.git-absorb
     pkgs.awscli
     pkgs.dive
     pkgs.mkcert

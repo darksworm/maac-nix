@@ -29,9 +29,14 @@
       url = "github:koekeishiya/homebrew-formulae";
       flake = false;
     };
+
+    ovensh-bun = {
+      url = "github:oven-sh/homebrew-bun";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -96,16 +101,19 @@
             "openjdk@21"
 
             # k8s crap for work
-            #"kubernetes-cli"
-            #"kubelogin"
-            #"k9s"
-            #"krew"
+            "helm"
 
             "ca-certificates"
             "cryptography"
 
             "jenv"
             "pyenv"
+
+            "kopia"
+
+            "ollama"
+
+            "oven-sh/bun/bun"
           ];
 
           caskArgs = {
@@ -127,6 +135,9 @@
             "firefox@developer-edition"
             "karabiner-elements"
             "spotify"
+            "private-internet-access"
+
+            "kopiaui"
           ];
       };
     };
@@ -141,7 +152,7 @@
           configuration
 
           nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; })
+            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; inherit ovensh-bun; })
 
           home-manager.darwinModules.home-manager
             {
