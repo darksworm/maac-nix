@@ -142,6 +142,7 @@
 
             "kopiaui"
             "nikitabobko/tap/aerospace"
+            "hazeover"
           ];
       };
     };
