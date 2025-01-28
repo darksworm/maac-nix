@@ -48,6 +48,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
           pkgs.vim
+          pkgs.neofetch
           pkgs.nmap
           pkgs.watch
           pkgs.wget
@@ -61,6 +62,10 @@
           pkgs.fzf
           pkgs.podman
           pkgs.websocat
+          pkgs.ollama
+          pkgs.kopia
+          pkgs.pyenv
+          pkgs.bun
       ];
 
       # Necessary for using flakes on this system.
@@ -97,7 +102,7 @@
 
           brews = [ 
             # you're my heart, you're my soul
-            "neovim" 
+            "neovim"
 
             # bunch of java versions
             "openjdk@11"
@@ -114,8 +119,6 @@
             "pyenv"
 
             "kopia"
-
-            "ollama"
 
             "oven-sh/bun/bun"
           ];
@@ -143,6 +146,7 @@
             "kopiaui"
             "nikitabobko/tap/aerospace"
             "hazeover"
+            "ghostty"
           ];
       };
     };

@@ -36,7 +36,7 @@
     pkgs.kcat
     pkgs.trivy
     pkgs.pwgen
-    pkgs.awscli
+    pkgs.awscli2
     pkgs.dive
     pkgs.mkcert
 
@@ -67,6 +67,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/aerospace/aerospace.toml".source = config/aerospace.toml;
+    ".config/ghostty/config".source = config/ghostty;
   };
 
   # You can also manage environment variables but you will have to manually
