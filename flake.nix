@@ -147,6 +147,7 @@
             "nikitabobko/tap/aerospace"
             "hazeover"
             "ghostty"
+            "doll"
           ];
       };
     };
