@@ -165,15 +165,21 @@
 
           configuration
 
-          nix-homebrew.darwinModules.nix-homebrew 
-            (import ./darwin/homebrew.nix { inherit nixpkgs; inherit homebrew-core; inherit homebrew-cask; inherit homebrew-bundle; inherit koekeishiya-formulae; inherit ovensh-bun; inherit nikitabobko-tap; })
+          nix-homebrew.darwinModules.nix-homebrew (import ./darwin/homebrew.nix { 
+            inherit nixpkgs; 
+            inherit homebrew-core; 
+            inherit homebrew-cask;
+            inherit homebrew-bundle; 
+            inherit koekeishiya-formulae; 
+            inherit ovensh-bun; 
+            inherit nikitabobko-tap; 
+          })
 
-          home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.ilmars = import ./home.nix;
-            }
+          home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.ilmars = import ./home.nix;
+          }
       ];
     };
   };
