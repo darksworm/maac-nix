@@ -48,6 +48,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
           pkgs.vim
+          pkgs.granted
           pkgs.stow
           pkgs.neofetch
           pkgs.blueutil
@@ -62,7 +63,6 @@
           pkgs.ripgrep
           pkgs.btop
           pkgs.fzf
-          pkgs.podman
           pkgs.websocat
           pkgs.ollama
           pkgs.kopia
@@ -123,6 +123,8 @@
             "kopia"
 
             "oven-sh/bun/bun"
+
+            "podman"
           ];
 
           caskArgs = {

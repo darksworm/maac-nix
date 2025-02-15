@@ -1,18 +1,16 @@
 - [ ] bootstrap git
 - [ ] bootstarp ssh
 - [ ] nixvim
-- [ ] kube config
 - [ ] add Oil to nvim
 '''
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 '''
 - [ ] pull all github repos
 
-## EXPERIMENTAL
-- [ ] try aerospace
-
 ## DONE
+- [x] kube config
 - [x] k8s utils
+- [x] try aerospace
 - [x] theme k9s https://github.com/hbjydev/hnix/blob/4971f268a95d146463aa41e70687cc0249710f02/users/hayden/dev/k9s.nix#L3
 - [x] karabiner-elements (or fully custom kb layout)
 - [x] yabairc into nix

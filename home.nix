@@ -191,6 +191,7 @@
       v = "nvim";
 
       "docker-compose" = "docker compose";
+      "devenv" = "cd ~/Dev/devenv && docker-compose";
     };
 
     plugins = [
