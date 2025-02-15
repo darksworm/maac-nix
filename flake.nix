@@ -11,6 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nvf.url = "github:notashelf/nvf";
 
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -41,7 +42,7 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, nvf, ... }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -104,7 +105,7 @@
 
           brews = [ 
             # you're my heart, you're my soul
-            "neovim"
+            #"neovim"
 
             # bunch of java versions
             "openjdk@11"
@@ -161,18 +162,20 @@
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."maac" = nix-darwin.lib.darwinSystem {
       modules = [ 
+          nvf.nixosModules.default
+
           ./darwin
 
           configuration
 
           nix-homebrew.darwinModules.nix-homebrew (import ./darwin/homebrew.nix { 
-            inherit nixpkgs; 
-            inherit homebrew-core; 
+            inherit nixpkgs;
+            inherit homebrew-core;
             inherit homebrew-cask;
-            inherit homebrew-bundle; 
-            inherit koekeishiya-formulae; 
-            inherit ovensh-bun; 
-            inherit nikitabobko-tap; 
+            inherit homebrew-bundle;
+            inherit koekeishiya-formulae;
+            inherit ovensh-bun;
+            inherit nikitabobko-tap;
           })
 
           home-manager.darwinModules.home-manager {

@@ -1,7 +1,12 @@
 # home.nix
 
-{ config, pkgs, lib, ... }:
-
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -87,6 +92,7 @@
   imports = [
     ./dev
   ];
+
 
   # home.file."~/.kube/config" = {
   #   source = "${pkgs.fetchgit {
@@ -187,8 +193,8 @@
       nu = "( cd ~/.config/nix-darwin && ./bin/build )";
       htop = "btop";
 
-      vim = "nvim";
-      v = "nvim";
+      # vim = "nvim";
+      # v = "nvim";
 
       "docker-compose" = "docker compose";
       "devenv" = "cd ~/Dev/devenv && docker-compose";

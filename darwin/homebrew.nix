@@ -1,4 +1,13 @@
-{ nixpkgs, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, ... }: 
+{
+  nixpkgs,
+  homebrew-core,
+  homebrew-cask,
+  homebrew-bundle,
+  koekeishiya-formulae,
+  ovensh-bun,
+  nikitabobko-tap,
+  ...
+}:
 {
   nix-homebrew = {
     # Install Homebrew under the default prefix
