@@ -1,13 +1,11 @@
 # home.nix
-
 {
   config,
   pkgs,
   lib,
   inputs,
   ...
-}:
-{
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
@@ -56,6 +54,7 @@
     pkgs.kubectl
     pkgs.kubelogin
     pkgs.kubelogin-oidc
+    pkgs.kustomize
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -93,7 +92,6 @@
     ./dev
   ];
 
-
   # home.file."~/.kube/config" = {
   #   source = "${pkgs.fetchgit {
   #     url = "git+ssh://git@github.com:ilmarspenneo/nix-work.git";
@@ -120,14 +118,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-    # Alacritty module configuration
+  # Alacritty module configuration
   programs.alacritty = {
     enable = true;
 
     # Path to the custom theme file
     settings = {
       general = {
-        import = [ "~/.config/alacritty/themes/oxocarbon.toml" ];
+        import = ["~/.config/alacritty/themes/oxocarbon.toml"];
       };
 
       font = {

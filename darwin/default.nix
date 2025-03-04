@@ -15,6 +15,25 @@
     # options, examples, instruction tutorials and more; please visit the online manual.
     # https://notashelf.github.io/nvf/options.html
     settings.vim = {
+      keymaps = [
+        {
+          key = "<leader>ddt";
+          mode = ["n"];
+          silent = true;
+
+          action = ":lua if vim.g.diagnostics_active == nil then vim.g.diagnostics_active = true end; vim.g.diagnostics_active = not vim.g.diagnostics_active; if vim.g.diagnostics_active then vim.diagnostic.enable() print('Diagnostics enabled') else vim.diagnostic.disable() print('Diagnostics disabled') end<CR>";
+
+          desc = "Toggle inline diagnostics";
+        }
+        {
+          key = "<leader>wq";
+          mode = ["n"];
+          action = ":wq<CR>";
+          silent = true;
+          desc = "Save file and quit";
+        }
+      ];
+
       viAlias = true;
       vimAlias = true;
       debugMode = {
@@ -243,12 +262,8 @@
     };
   };
 
-  services = {
-    nix-daemon.enable = true;
-  };
-
   # sudo with touch id (wow)
-  security = {pam.enableSudoTouchIdAuth = true;};
+  security = {pam.services.sudo_local.touchIdAuth = true;};
 
   # to permit the sudo touchid also in tmux
   environment.etc."pam.d/sudo_local".text = ''
