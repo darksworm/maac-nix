@@ -42,33 +42,47 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, koekeishiya-formulae, ovensh-bun, nikitabobko-tap, nvf, ... }:
-  let
-    configuration = { pkgs, ... }: {
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+    home-manager,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-bundle,
+    koekeishiya-formulae,
+    ovensh-bun,
+    nikitabobko-tap,
+    nvf,
+    ...
+  }: let
+    configuration = {pkgs, ...}: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
-          pkgs.vim
-          pkgs.granted
-          pkgs.stow
-          pkgs.neofetch
-          pkgs.blueutil
-          pkgs.nmap
-          pkgs.watch
-          pkgs.wget
-          pkgs.jq
-          pkgs.readline
-          pkgs.inetutils
-          pkgs.tmux
-          pkgs.ncdu
-          pkgs.ripgrep
-          pkgs.btop
-          pkgs.fzf
-          pkgs.websocat
-          pkgs.ollama
-          pkgs.kopia
-          pkgs.pyenv
-          pkgs.bun
+        pkgs.vim
+        pkgs.granted
+        pkgs.stow
+        pkgs.neofetch
+        pkgs.blueutil
+        pkgs.nmap
+        pkgs.watch
+        pkgs.wget
+        pkgs.jq
+        pkgs.readline
+        pkgs.inetutils
+        pkgs.tmux
+        pkgs.ncdu
+        pkgs.ripgrep
+        pkgs.btop
+        pkgs.fzf
+        pkgs.websocat
+        pkgs.ollama
+        pkgs.kopia
+        pkgs.pyenv
+        pkgs.bun
+        pkgs.podman
       ];
 
       # Necessary for using flakes on this system.
@@ -89,103 +103,108 @@
       nixpkgs.config.allowUnfree = true;
 
       users.users.ilmars = {
-          name = "ilmars";
-          home = "/Users/ilmars";
-          shell = pkgs.zsh;
+        name = "ilmars";
+        home = "/Users/ilmars";
+        shell = pkgs.zsh;
       };
 
       homebrew = {
-          enable = true;
+        enable = true;
 
-          onActivation = {
-            autoUpdate = true;
-            cleanup = "uninstall";
-            upgrade = true;
-          };
+        onActivation = {
+          autoUpdate = true;
+          cleanup = "uninstall";
+          upgrade = true;
+        };
 
-          brews = [ 
-            # you're my heart, you're my soul
-            #"neovim"
+        brews = [
+          # you're my heart, you're my soul
+          #"neovim"
 
-            # bunch of java versions
-            "openjdk@11"
-            "openjdk@17"
-            "openjdk@21"
+          # bunch of java versions
+          "openjdk@11"
+          "openjdk@17"
+          "openjdk@21"
 
-            # k8s crap for work
-            "helm"
+          # k8s crap for work
+          "helm"
 
-            "ca-certificates"
-            "cryptography"
+          "ca-certificates"
+          "cryptography"
 
-            "jenv"
-            "pyenv"
+          "jenv"
+          "pyenv"
 
-            "kopia"
+          "kopia"
 
-            "oven-sh/bun/bun"
+          "oven-sh/bun/bun"
 
-            "podman"
-          ];
+          "podman"
+        ];
 
-          caskArgs = {
-            no_quarantine = true;
-          };
+        caskArgs = {
+          no_quarantine = true;
+        };
 
-          casks = [
-            "docker"
-            "datagrip"
-            "jetbrains-toolbox"
-            "intellij-idea"
-            "obs"
-            "jordanbaird-ice"
-            "arc"
-            "1password"
-            "flux"
-            "slack"
-            "firefox@developer-edition"
-            "karabiner-elements"
-            "spotify"
-            "private-internet-access"
+        casks = [
+          "docker"
+          "datagrip"
+          "jetbrains-toolbox"
+          "intellij-idea"
 
-            "kopiaui"
-            "nikitabobko/tap/aerospace"
-            "hazeover"
-            "ghostty"
-            "doll"
-          ];
+          "wacom-tablet"
+          "xournal++"
+
+          "obs"
+          "jordanbaird-ice"
+          "arc"
+          "1password"
+          "flux"
+          "slack"
+          "firefox@developer-edition"
+          "karabiner-elements"
+          "spotify"
+          "private-internet-access"
+
+          "kopiaui"
+          "nikitabobko/tap/aerospace"
+          "hazeover"
+          "ghostty"
+          "doll"
+
+          "osu"
+        ];
       };
     };
-  in
-  {
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."maac" = nix-darwin.lib.darwinSystem {
-      modules = [ 
-          nvf.nixosModules.default
+      modules = [
+        nvf.nixosModules.default
 
-          ./darwin
+        ./darwin
 
-          configuration
+        configuration
 
-          nix-homebrew.darwinModules.nix-homebrew (import ./darwin/homebrew.nix { 
-            inherit nixpkgs;
-            inherit homebrew-core;
-            inherit homebrew-cask;
-            inherit homebrew-bundle;
-            inherit koekeishiya-formulae;
-            inherit ovensh-bun;
-            inherit nikitabobko-tap;
-          })
+        nix-homebrew.darwinModules.nix-homebrew
+        (import ./darwin/homebrew.nix {
+          inherit nixpkgs;
+          inherit homebrew-core;
+          inherit homebrew-cask;
+          inherit homebrew-bundle;
+          inherit koekeishiya-formulae;
+          inherit ovensh-bun;
+          inherit nikitabobko-tap;
+        })
 
-          home-manager.darwinModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.ilmars = import ./home.nix;
-          }
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.ilmars = import ./home.nix;
+        }
       ];
     };
   };
 }
-
-
