@@ -61,11 +61,8 @@
     ...
   }: let
     configuration = {pkgs, ...}: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       environment.systemPackages = [
         inputs.home-manager.packages.aarch64-darwin.home-manager
-
         pkgs.vim
         pkgs.granted
         pkgs.stow
@@ -128,9 +125,6 @@
         };
 
         brews = [
-          # you're my heart, you're my soul
-          #"neovim"
-
           # bunch of java versions
           "openjdk@11"
           "openjdk@17"
@@ -188,8 +182,6 @@
       };
     };
   in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."maac" = nix-darwin.lib.darwinSystem {
       modules = [
         nvf.nixosModules.default

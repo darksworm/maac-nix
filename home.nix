@@ -58,63 +58,9 @@
     pkgs.kustomize
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files hois through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    #".config/aerospace/aerospace.toml".source = config/aerospace.toml;
-    #".config/ghostty/config".source = config/ghostty;
-  };
-
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/davish/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
   imports = [
     ./dev
   ];
-
-  # home.file."~/.kube/config" = {
-  #   source = "${pkgs.fetchgit {
-  #     url = "git+ssh://git@github.com:ilmarspenneo/nix-work.git";
-  #     rev = "main";
-  #   }}/kubeconfig";
-  # };
-
-  home.activation = {
-    syncJenvVersions = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      ( if [ -f /opt/homebrew/bin/brew ]; then
-        echo -e "Syncing JDK versions into jenv..."
-
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-
-        brew list --formula |\
-                grep openjdk |\
-                xargs -I {} -n1 jenv add /opt/homebrew/opt/{}
-
-        echo -e "Done syncing JDK versions into jenv."
-      fi )
-    '';
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

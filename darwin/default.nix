@@ -1,11 +1,4 @@
 {pkgs, ...}: {
-  # environment = {
-  #   variables = {
-  #     EDITOR = "nvim";
-  #     VISUAL = "nvim";
-  #   };
-  # };
-
   programs.nvf = {
     enable = true;
 
@@ -215,12 +208,6 @@
         todo-comments.enable = true;
       };
 
-      # terminal = {
-      #   toggleterm = {
-      #     enable = true;
-      #     lazygit.enable = true;
-      #   };
-      # };
 
       ui = {
         borders.enable = true;
@@ -272,7 +259,7 @@
   };
 
   # sudo with touch id (wow)
-  security = {pam.services.sudo_local.touchIdAuth = true;};
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # to permit the sudo touchid also in tmux
   environment.etc."pam.d/sudo_local".text = ''
@@ -342,7 +329,6 @@
         NSAutomaticWindowAnimationsEnabled = false;
         NSWindowResizeTime = 0.0;
         "com.apple.sound.beep.feedback" = 0;
-        #"com.apple.trackpad.scaling" = 2.0;
       };
     };
   };
