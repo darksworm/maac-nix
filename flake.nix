@@ -64,6 +64,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        inputs.home-manager.packages.aarch64-darwin.home-manager
+
         pkgs.vim
         pkgs.granted
         pkgs.stow

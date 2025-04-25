@@ -1,0 +1,6 @@
+#/usr/bin/env sh
+
+set -e
+
+home-manager expire-generations "-7 days"
+nix-collect-garbage --delete-older-than 1d

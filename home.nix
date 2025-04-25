@@ -189,7 +189,9 @@
 
     shellAliases = {
       dc = "docker compose";
-      nu = "( z nix && darwin-rebuild switch --flake . )";
+      nix-upgrade = "~/.config/nix-darwin/bin/nix-upgrade";
+      nix-sync = "~/.config/nix-darwin/bin/nix-sync";
+      nix-gc = "~/.config/nix-darwin/bin/nix-gc";
       htop = "btop";
 
       "docker-compose" = "docker compose";

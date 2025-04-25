@@ -1,0 +1,12 @@
+#/usr/bin/env sh
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+darwin-rebuild switch --flake ~/.config/nix-darwin
+
+echo "Update is done, running GC in background"
+
+nohup "$SCRIPT_DIR/nix-gc" >/dev/null 2>&1 &
+disown
