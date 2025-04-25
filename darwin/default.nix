@@ -32,6 +32,16 @@
           silent = true;
           desc = "Save file and quit";
         }
+        {
+          key = "<leader>n";
+          mode = ["n"];
+          action = "<Cmd>Neotree toggle<CR>";
+        }
+        {
+          key = "<leader>o";
+          mode = ["n"];
+          action = "<Cmd>Telescope buffers<CR>";
+        }
       ];
 
       viAlias = true;
@@ -47,14 +57,13 @@
       };
 
       lsp = {
-        formatOnSave = true;
+        formatOnSave = false;
         lspkind.enable = false;
         lightbulb.enable = true;
         lspsaga.enable = false;
         trouble.enable = true;
         lspSignature.enable = true;
         otter-nvim.enable = true;
-        lsplines.enable = true;
         nvim-docs-view.enable = true;
       };
 
@@ -190,7 +199,7 @@
           # this, I think is the same as hop, basically, so I'll use only one
           leap.enable = false;
           # the thing that helps discover notions and adds the comment lines with chars
-          precognition.enable = true;
+          precognition.enable = false;
         };
 
         images = {

@@ -46,6 +46,7 @@
     pkgs.direnv
     pkgs.zoxide
     pkgs.fnm
+    pkgs.uv
 
     pkgs.flameshot
     pkgs.raycast
@@ -188,11 +189,8 @@
 
     shellAliases = {
       dc = "docker compose";
-      nu = "( cd ~/.config/nix-darwin && ./bin/build )";
+      nu = "( z nix && darwin-rebuild switch --flake . )";
       htop = "btop";
-
-      # vim = "nvim";
-      # v = "nvim";
 
       "docker-compose" = "docker compose";
       "devenv" = "cd ~/Dev/devenv && docker-compose";

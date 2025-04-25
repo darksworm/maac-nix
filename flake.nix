@@ -40,6 +40,8 @@
       url = "github:nikitabobko/homebrew-tap";
       flake = false;
     };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = inputs @ {
@@ -55,6 +57,7 @@
     ovensh-bun,
     nikitabobko-tap,
     nvf,
+    mac-app-util,
     ...
   }: let
     configuration = {pkgs, ...}: {
@@ -87,6 +90,11 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+
+      nix.gc = {
+        automatic = true;
+        options = "--delete-older-than 7d";
+      };
 
       # Enable alternative shell support in nix-darwin.
       programs.zsh.enable = true;
@@ -151,6 +159,7 @@
           "datagrip"
           "jetbrains-toolbox"
           "intellij-idea"
+          "trae"
 
           "wacom-tablet"
           "xournal++"
@@ -198,11 +207,16 @@
           inherit nikitabobko-tap;
         })
 
+        mac-app-util.darwinModules.default
+
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.ilmars = import ./home.nix;
+          home-manager.sharedModules = [
+            mac-app-util.homeManagerModules.default
+          ];
         }
       ];
     };
