@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-nix flake update ~/.config/nix-darwin
+nix flake update --flake ~/.config/nix-darwin
 darwin-rebuild switch --flake ~/.config/nix-darwin
 
 echo "Update is done, starting GC process in the background"
