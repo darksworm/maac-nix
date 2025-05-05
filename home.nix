@@ -26,6 +26,7 @@
     pkgs.cmake
     pkgs.atool
     pkgs.go
+    pkgs.parallel
 
     # git gud
     pkgs.gh
