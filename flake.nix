@@ -87,8 +87,10 @@
         pkgs.podman
       ];
 
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        download-buffer-size = 524288000;
+      };
 
       nix.gc = {
         automatic = true;
