@@ -28,6 +28,8 @@
     pkgs.go
     pkgs.parallel
 
+    pkgs.yt-dlp
+
     # git gud
     pkgs.gh
     pkgs.git-absorb

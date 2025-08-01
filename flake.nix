@@ -83,7 +83,7 @@
         pkgs.ollama
         pkgs.kopia
         pkgs.pyenv
-        pkgs.bun
+#       pkgs.bun
         pkgs.podman
       ];
 
@@ -106,6 +106,8 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
+
+      system.primaryUser = "ilmars";
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
@@ -146,6 +148,7 @@
           "oven-sh/bun/bun"
 
           "podman"
+          "platformio"
         ];
 
         caskArgs = {
@@ -180,6 +183,7 @@
           "doll"
 
           "osu"
+          "freecad"
         ];
       };
     };
