@@ -35,9 +35,6 @@
     pkgs.git-absorb
     pkgs.mr
 
-    # tty
-    pkgs.alacritty
-
     pkgs.ffmpeg
     pkgs.kcat
     pkgs.trivy
@@ -51,14 +48,15 @@
     pkgs.fnm
     pkgs.uv
 
-    pkgs.flameshot
     pkgs.raycast
-    pkgs.aldente
 
     pkgs.kubectl
     pkgs.kubelogin
     pkgs.kubelogin-oidc
     pkgs.kustomize
+
+    pkgs.pritunl-client
+    pkgs.vscode
   ];
 
   imports = [
@@ -67,30 +65,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # Alacritty module configuration
-  programs.alacritty = {
-    enable = true;
-
-    # Path to the custom theme file
-    settings = {
-      general = {
-        import = ["~/.config/alacritty/themes/oxocarbon.toml"];
-      };
-
-      font = {
-        size = 19;
-      };
-
-      window = {
-        decorations = "Buttonless";
-        padding = {
-          x = 6;
-          y = 12;
-        };
-      };
-    };
-  };
 
   programs.tmux = {
     enable = true;
@@ -138,9 +112,9 @@
 
     shellAliases = {
       dc = "docker compose";
-      nix-upgrade = "~/.config/nix-darwin/bin/nix-upgrade";
-      nix-sync = "~/.config/nix-darwin/bin/nix-sync";
-      nix-gc = "~/.config/nix-darwin/bin/nix-gc";
+      nix-upgrade = "~/.config/nix/bin/nix-upgrade";
+      nix-sync = "~/.config/nix/bin/nix-sync";
+      nix-gc = "~/.config/nix/bin/nix-gc";
       htop = "btop";
 
       "docker-compose" = "docker compose";

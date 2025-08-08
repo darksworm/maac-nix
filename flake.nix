@@ -31,11 +31,6 @@
       flake = false;
     };
 
-    ovensh-bun = {
-      url = "github:oven-sh/homebrew-bun";
-      flake = false;
-    };
-
     nikitabobko-tap = {
       url = "github:nikitabobko/homebrew-tap";
       flake = false;
@@ -54,7 +49,6 @@
     homebrew-cask,
     homebrew-bundle,
     koekeishiya-formulae,
-    ovensh-bun,
     nikitabobko-tap,
     nvf,
     mac-app-util,
@@ -80,11 +74,9 @@
         pkgs.btop
         pkgs.fzf
         pkgs.websocat
-        pkgs.ollama
-        pkgs.kopia
         pkgs.pyenv
-#       pkgs.bun
-        pkgs.podman
+        pkgs.argocd
+        pkgs.coreutils
       ];
 
       nix.settings = {
@@ -143,11 +135,6 @@
           "jenv"
           "pyenv"
 
-          "kopia"
-
-          "oven-sh/bun/bun"
-
-          "podman"
           "platformio"
         ];
 
@@ -156,14 +143,12 @@
         };
 
         casks = [
-          "docker"
+          "docker-desktop"
           "datagrip"
           "jetbrains-toolbox"
           "intellij-idea"
-          "trae"
 
           "wacom-tablet"
-          "xournal++"
 
           "obs"
           "jordanbaird-ice"
@@ -174,16 +159,12 @@
           "firefox@developer-edition"
           "karabiner-elements"
           "spotify"
-          "private-internet-access"
 
-          "kopiaui"
           "nikitabobko/tap/aerospace"
-          "hazeover"
           "ghostty"
-          "doll"
 
-          "osu"
           "freecad"
+          "flameshot"
         ];
       };
     };
@@ -203,7 +184,6 @@
           inherit homebrew-cask;
           inherit homebrew-bundle;
           inherit koekeishiya-formulae;
-          inherit ovensh-bun;
           inherit nikitabobko-tap;
         })
 

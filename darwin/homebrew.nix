@@ -4,7 +4,6 @@
   homebrew-cask,
   homebrew-bundle,
   koekeishiya-formulae,
-  ovensh-bun,
   nikitabobko-tap,
   ...
 }: {
@@ -24,7 +23,6 @@
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
       "koekeishiya/homebrew-formulae" = koekeishiya-formulae;
-      "oven-sh/homebrew-bun" = ovensh-bun;
       "nikitabobko/homebrew-tap" = nikitabobko-tap;
     };
 

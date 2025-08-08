@@ -83,7 +83,7 @@
         # Languages that are enabled in the maximal configuration.
         bash.enable = true;
         css.enable = true;
-        tailwind.enable = true;
+        tailwind.enable = false;
         html.enable = true;
         sql.enable = true;
         java.enable = true;

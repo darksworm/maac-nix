@@ -6,7 +6,7 @@ url --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix |
   sh -s -- install --determinate
 
 mkdir -p ~/.config
-git clone https://github.com/darksworm/maac-nix.git ~/.config/nix-darwin
+git clone https://github.com/darksworm/maac-nix.git ~/.config/nix
 
-cd ~/.config/nix-darwin
+cd ~/.config/nix
 bin/build
