@@ -22,6 +22,7 @@
   # environment.
   home.packages = [
     pkgs.dash
+    pkgs.gnupg
     pkgs.ninja
     pkgs.cmake
     pkgs.atool
@@ -29,6 +30,7 @@
     pkgs.parallel
 
     pkgs.yt-dlp
+    pkgs.gemini-cli
 
     # git gud
     pkgs.gh
@@ -76,6 +78,7 @@
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.pain-control
+      tmuxPlugins.session-wizard
     ];
 
     extraConfig = ''
@@ -115,6 +118,7 @@
       nix-upgrade = "~/.config/nix/bin/nix-upgrade";
       nix-sync = "~/.config/nix/bin/nix-sync";
       nix-gc = "~/.config/nix/bin/nix-gc";
+      argonaut = "cd ~/Dev/private/a9s && npm run dev";
       htop = "btop";
 
       "docker-compose" = "docker compose";

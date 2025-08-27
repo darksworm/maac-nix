@@ -5,6 +5,10 @@
   homebrew-bundle,
   koekeishiya-formulae,
   nikitabobko-tap,
+  homebrew-services,
+  darksworm-tap,
+  cristianoliveira-tap,
+  ovensh-bun,
   ...
 }: {
   nix-homebrew = {
@@ -22,8 +26,12 @@
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
+      "homebrew/homebrew-services" = homebrew-services;
       "koekeishiya/homebrew-formulae" = koekeishiya-formulae;
       "nikitabobko/homebrew-tap" = nikitabobko-tap;
+      "darksworm/homebrew-tap" = darksworm-tap;
+      "cristianoliveira/homebrew-tap" = cristianoliveira-tap;
+      "oven-sh/homebrew-bun" = ovensh-bun;
     };
 
     # Optional: Enable fully-declarative tap management

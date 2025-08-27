@@ -26,6 +26,11 @@
       flake = false;
     };
 
+    homebrew-services = {
+      url = "github:homebrew/homebrew-services";
+      flake = false;
+    };
+
     koekeishiya-formulae = {
       url = "github:koekeishiya/homebrew-formulae";
       flake = false;
@@ -33,6 +38,21 @@
 
     nikitabobko-tap = {
       url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
+
+    darksworm-tap = {
+      url = "github:darksworm/homebrew-tap";
+      flake = false;
+    };
+
+    cristianoliveira-tap = {
+      url = "github:cristianoliveira/homebrew-tap";
+      flake = false;
+    };
+
+    ovensh-bun = {
+      url = "github:oven-sh/homebrew-bun";
       flake = false;
     };
 
@@ -48,13 +68,17 @@
     homebrew-core,
     homebrew-cask,
     homebrew-bundle,
+    homebrew-services,
     koekeishiya-formulae,
     nikitabobko-tap,
     nvf,
     mac-app-util,
+    darksworm-tap,
+    cristianoliveira-tap,
+    ovensh-bun,
     ...
   }: let
-    configuration = {pkgs, ...}: {
+    configuration = {pkgs, config, ...}: {
       environment.systemPackages = [
         inputs.home-manager.packages.aarch64-darwin.home-manager
         pkgs.vim
@@ -77,6 +101,8 @@
         pkgs.pyenv
         pkgs.argocd
         pkgs.coreutils
+        pkgs.delta
+        pkgs.discord
       ];
 
       nix.settings = {
@@ -135,7 +161,12 @@
           "jenv"
           "pyenv"
 
+          "darksworm/tap/aeroswitch"
+          "cristianoliveira/tap/aerospace-scratchpad"
           "platformio"
+
+          "k3d"
+          "oven-sh/bun/bun"
         ];
 
         caskArgs = {
@@ -143,12 +174,17 @@
         };
 
         casks = [
+          "proton-mail-bridge"
+          "linear-linear"
           "docker-desktop"
           "datagrip"
           "jetbrains-toolbox"
           "intellij-idea"
+          "flameshot"
 
           "wacom-tablet"
+
+          "pritunl"
 
           "obs"
           "jordanbaird-ice"
@@ -164,7 +200,6 @@
           "ghostty"
 
           "freecad"
-          "flameshot"
         ];
       };
     };
@@ -183,8 +218,12 @@
           inherit homebrew-core;
           inherit homebrew-cask;
           inherit homebrew-bundle;
+          inherit homebrew-services;
           inherit koekeishiya-formulae;
           inherit nikitabobko-tap;
+          inherit darksworm-tap;
+          inherit cristianoliveira-tap;
+          inherit ovensh-bun;
         })
 
         mac-app-util.darwinModules.default
