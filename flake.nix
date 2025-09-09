@@ -56,6 +56,16 @@
       flake = false;
     };
 
+    alajmo-tap = {
+      url = "github:alajmo/homebrew-mani";
+      flake = false;
+    };
+
+    charmbracelet-tap = {
+      url = "github:charmbracelet/homebrew-tap";
+      flake = false;
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
@@ -76,6 +86,8 @@
     darksworm-tap,
     cristianoliveira-tap,
     ovensh-bun,
+    alajmo-tap,
+    charmbracelet-tap,
     ...
   }: let
     configuration = {pkgs, config, ...}: {
@@ -84,7 +96,6 @@
         pkgs.vim
         pkgs.granted
         pkgs.stow
-        pkgs.neofetch
         pkgs.blueutil
         pkgs.nmap
         pkgs.watch
@@ -167,6 +178,8 @@
 
           "k3d"
           "oven-sh/bun/bun"
+          "alajmo/mani/mani"
+          "charmbracelet/tap/crush"
         ];
 
         caskArgs = {
@@ -224,6 +237,8 @@
           inherit darksworm-tap;
           inherit cristianoliveira-tap;
           inherit ovensh-bun;
+          inherit alajmo-tap;
+          inherit charmbracelet-tap;
         })
 
         mac-app-util.darwinModules.default

@@ -9,6 +9,8 @@
   darksworm-tap,
   cristianoliveira-tap,
   ovensh-bun,
+  alajmo-tap,
+  charmbracelet-tap,
   ...
 }: {
   nix-homebrew = {
@@ -32,6 +34,8 @@
       "darksworm/homebrew-tap" = darksworm-tap;
       "cristianoliveira/homebrew-tap" = cristianoliveira-tap;
       "oven-sh/homebrew-bun" = ovensh-bun;
+      "alajmo/homebrew-mani" = alajmo-tap;
+      "charmbracelet/homebrew-tap" = charmbracelet-tap;
     };
 
     # Optional: Enable fully-declarative tap management
