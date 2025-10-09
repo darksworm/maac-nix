@@ -38,10 +38,10 @@
     pkgs.mr
 
     pkgs.ffmpeg
-    pkgs.kcat
+    # pkgs.kcat  # Temporarily disabled due to avro-c++ build failure
     pkgs.trivy
     pkgs.pwgen
-    pkgs.awscli2
+    # pkgs.awscli2  # Disabled - use homebrew version instead (brew install awscli)
     pkgs.dive
     pkgs.mkcert
 
@@ -79,12 +79,44 @@
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.pain-control
       tmuxPlugins.session-wizard
+      tmuxPlugins.fzf-tmux-url
+      (tmuxPlugins.mkTmuxPlugin {
+        pluginName = "tmux-toggle-scratch";
+        version = "unstable-2024-01-01";
+        rtpPath = "share/tmux-plugins/tmux-toggle-scratch";
+        src = fetchFromGitHub {
+          owner = "momo-lab";
+          repo = "tmux-toggle-scratch";
+          rev = "28f9ab4f37cbb90a7da9419f14ab487648b22386";
+          sha256 = "sha256-lzNMwf5o+Mg5vqLfdf+JU+MgetXbEyQQsPI+kRRnEIE=";
+        };
+        postInstall = ''
+          cd $out/share/tmux-plugins/tmux-toggle-scratch
+          ln -sf tmux-toggle-scratch.tmux tmux_toggle_scratch.tmux
+        '';
+      })
+      (tmuxPlugins.mkTmuxPlugin {
+        pluginName = "tmux-copy-toolkit";
+        version = "unstable-2024-01-01";
+        rtpPath = "share/tmux-plugins/tmux-copy-toolkit";
+        src = fetchFromGitHub {
+          owner = "CrispyConductor";
+          repo = "tmux-copy-toolkit";
+          rev = "c80c2c068059fe04f840ea9f125c21b83cb6f81f";
+          sha256 = "sha256-cLeOoJ+4MF8lSpwy5lkcPakvB3cpgey0RfLbVTwERNk=";
+        };
+        postInstall = ''
+          cd $out/share/tmux-plugins/tmux-copy-toolkit
+          ln -sf copytk.tmux tmux_copy_toolkit.tmux
+        '';
+      })
     ];
 
     extraConfig = ''
       set -g default-command ${pkgs.zsh}/bin/zsh
 
       set -g mouse on
+
 
       bind -n M-h select-pane -L
       bind -n M-j select-pane -D
@@ -94,9 +126,48 @@
       bind -n M-H previous-window
       bind -n M-L next-window
 
-      # Set the background and foreground colors for the tmux status bar
+      # Reload config with prefix + r
+      bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
+
+      # Unbind default s (choose-tree) and bind scratch terminal with toggle
+      unbind -T prefix s
+      bind s if-shell -F '#{==:#{session_name},scratch}' {
+        detach-client
+      } {
+        display-popup -E -w "80%" -h "80%" "tmux new-session -A -s scratch -c '#{pane_current_path}'"
+      }
+
+      # Configure copy-toolkit to use system clipboard (macOS)
+      set -g @copytk-copy-command 'pbcopy'
+      set -g @copytk-no-default-keys 'false'
+
+      # Status bar configuration
+      set -g status on
+      set -g status-interval 1
+      set -g status-position bottom
+
+      # Status bar colors
       set -g status-bg '#1b1b1b'
-      set -g status-fg '#ffffff'
+      set -g status-fg '#c0c0c0'
+
+      # Status bar layout
+      set -g status-justify centre
+
+      # Left side - session name with nerd font icon
+      set -g status-left-length 40
+      set -g status-left '#[fg=#ffb86c,bold]  #S #[fg=#666666]│'
+
+      # Window status format - centered
+      set -g window-status-format '#[fg=#666666] #I:#W '
+      set -g window-status-current-format '#[fg=#c0c0c0,bold] #I:#W '
+      set -g window-status-separator ' '
+
+      # Right side - hostname
+      set -g status-right-length 40
+      set -g status-right '#[fg=#666666]│#[fg=#8be9fd]  #h '
+
+      # Window status alignment
+      set -g status-justify centre
 
       # Pane styling - dim inactive panes
       setw -g window-active-style 'bg=black'
@@ -131,7 +202,6 @@
       nix-upgrade = "~/.config/nix/bin/nix-upgrade";
       nix-sync = "~/.config/nix/bin/nix-sync";
       nix-gc = "~/.config/nix/bin/nix-gc";
-      argonaut = "cd ~/Dev/private/a9s && npm run dev";
       htop = "btop";
 
       "docker-compose" = "docker compose";

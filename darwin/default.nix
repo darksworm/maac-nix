@@ -17,7 +17,7 @@
               owner = "scottmckendry";
               repo = "cyberdream.nvim";
               rev = "main";
-              sha256 = "sha256-ifgn9I3I6qVHfRL3p0P/ZP+IbIfQIXE+WsbxTVqPohU=";
+              sha256 = "sha256-dyf3PURbg6sb9kUyU8EG/BpkD90xbHWVzeoWIS+nk9c=";
             };
           };
           setup = ''
@@ -115,7 +115,7 @@
 
         # Languages that will be supported in default and maximal configurations.
         nix.enable = true;
-        markdown.enable = true;
+        markdown.enable = false;  # Disabled to avoid building dotnet (marksman dependency)
 
         # Languages that are enabled in the maximal configuration.
         bash.enable = true;

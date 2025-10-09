@@ -171,6 +171,7 @@
 
           "jenv"
           "pyenv"
+          "awscli"  # Pre-built binary, much faster than building from source
 
           "darksworm/tap/aeroswitch"
           "cristianoliveira/tap/aerospace-scratchpad"
@@ -214,6 +215,9 @@
           "ghostty"
 
           "freecad"
+
+          "traefiktop"
+          "argonaut"
         ];
       };
     };
