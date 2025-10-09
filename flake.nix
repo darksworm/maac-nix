@@ -193,6 +193,7 @@
           "datagrip"
           "jetbrains-toolbox"
           "intellij-idea"
+          "obsidian"
           "flameshot"
 
           "wacom-tablet"

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   programs.nvf = {
     enable = true;
 
@@ -8,6 +8,43 @@
     # options, examples, instruction tutorials and more; please visit the online manual.
     # https://notashelf.github.io/nvf/options.html
     settings.vim = {
+      # Extra plugins not covered by nvf modules
+      extraPlugins = {
+        cyberdream-nvim = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "cyberdream-nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "scottmckendry";
+              repo = "cyberdream.nvim";
+              rev = "main";
+              sha256 = "sha256-ifgn9I3I6qVHfRL3p0P/ZP+IbIfQIXE+WsbxTVqPohU=";
+            };
+          };
+          setup = ''
+            require("cyberdream").setup({
+              transparent = false,
+              italic_comments = true,
+              hide_fillchars = true,
+              borderless_telescope = true,
+              terminal_colors = true,
+              theme = {
+                variant = "default",
+                highlights = {
+                  Comment = { fg = "#696969", bg = "NONE", italic = true },
+                },
+                colors = {},
+              },
+              extensions = {
+                telescope = true,
+                notify = true,
+                mini = true,
+              },
+            })
+            vim.cmd("colorscheme cyberdream")
+          '';
+        };
+      };
+
       keymaps = [
         {
           key = "<leader>ddt";
@@ -91,6 +128,7 @@
         php.enable = true;
         ts.enable = true;
         go.enable = true;
+        yaml.enable = true;
       };
 
       visuals = {
@@ -114,15 +152,12 @@
       statusline = {
         lualine = {
           enable = true;
-          theme = "oxocarbon";
+          theme = "auto"; # Will automatically use cyberdream's lualine theme
         };
       };
 
       theme = {
-        enable = true;
-        name = "oxocarbon";
-        style = "dark";
-        transparent = false;
+        enable = false; # Disabled since we're using cyberdream via extraConfigLua
       };
 
       # https://github.com/windwp/nvim-autopairs
@@ -202,7 +237,18 @@
       };
 
       notes = {
-        obsidian.enable = false; # FIXME: neovim fails to build if obsidian is enabled
+        obsidian = {
+          enable = true;
+          setupOpts = {
+            completion.nvim-cmp = true;
+            workspaces = [
+              {
+                name = "2ndbrain";
+                path = "/Users/ilmars/Dev/private/2ndbrain";
+              }
+            ];
+          };
+        };
         neorg.enable = false;
         orgmode.enable = false;
         mind-nvim.enable = false;

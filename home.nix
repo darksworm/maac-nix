@@ -57,8 +57,8 @@
     pkgs.kubelogin-oidc
     pkgs.kustomize
 
-    pkgs.pritunl-client
     pkgs.vscode
+    pkgs.termshot
   ];
 
   imports = [
@@ -97,6 +97,19 @@
       # Set the background and foreground colors for the tmux status bar
       set -g status-bg '#1b1b1b'
       set -g status-fg '#ffffff'
+
+      # Pane styling - dim inactive panes
+      setw -g window-active-style 'bg=black'
+      setw -g window-style 'bg=#222222'
+
+      # Better pane dimming using focus events (tmux 3.2+)
+      set -g focus-events on
+      set-hook -g pane-focus-in 'select-pane -P "bg=black"'
+      set-hook -g pane-focus-out 'select-pane -P "bg=#1c1c1c,fg=#999999"'
+
+      # Also dim pane borders
+      set -g pane-border-style 'fg=#444444'
+      set -g pane-active-border-style 'fg=#88aaff'
     '';
   };
 
