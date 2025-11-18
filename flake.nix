@@ -165,6 +165,7 @@
 
           # k8s crap for work
           "helm"
+          "kubelogin"
 
           "ca-certificates"
           "cryptography"
@@ -181,6 +182,11 @@
           "oven-sh/bun/bun"
           "alajmo/mani/mani"
           "charmbracelet/tap/crush"
+
+          "wireshark"
+          "gpg2"
+          "gnupg"
+          "pinentry-mac"
         ];
 
         caskArgs = {
@@ -218,6 +224,8 @@
 
           "traefiktop"
           "argonaut"
+          "adobe-acrobat-reader"
+          "wireshark-chmodbpf"
         ];
       };
     };

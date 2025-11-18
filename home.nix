@@ -53,9 +53,9 @@
     pkgs.raycast
 
     pkgs.kubectl
-    pkgs.kubelogin
     pkgs.kubelogin-oidc
     pkgs.kustomize
+    pkgs.krew
 
     pkgs.vscode
     pkgs.termshot
@@ -178,9 +178,15 @@
       set-hook -g pane-focus-in 'select-pane -P "bg=black"'
       set-hook -g pane-focus-out 'select-pane -P "bg=#1c1c1c,fg=#999999"'
 
-      # Also dim pane borders
-      set -g pane-border-style 'fg=#444444'
-      set -g pane-active-border-style 'fg=#88aaff'
+      # Thicker border characters
+      set -g pane-border-lines heavy
+
+      # Show arrows pointing into the active pane
+      set -g pane-border-indicators arrows
+
+      # Colors: tweak to taste
+      set -g pane-border-style 'fg=colour239'
+      set -g pane-active-border-style 'fg=brightyellow'
     '';
   };
 
@@ -196,6 +202,10 @@
       size = 10000;
       extended = true;
     };
+
+    initContent = ''
+      export GPG_TTY=$(tty)
+    '';
 
     shellAliases = {
       dc = "docker compose";
