@@ -216,6 +216,7 @@
           "firefox@developer-edition"
           "karabiner-elements"
           "spotify"
+          "steam"
 
           "nikitabobko/tap/aerospace"
           "ghostty"
@@ -225,7 +226,7 @@
           "traefiktop"
           "argonaut"
           "adobe-acrobat-reader"
-          "wireshark-chmodbpf"
+          "wireshark"
         ];
       };
     };
