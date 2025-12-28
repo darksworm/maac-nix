@@ -60,6 +60,9 @@
 
     pkgs.vscode
     pkgs.termshot
+
+    # zsh plugins (lazy-loaded)
+    pkgs.zsh-vi-mode
   ];
 
   imports = [
@@ -227,11 +230,7 @@
         file = "base.zsh";
       }
       # Removed powerlevel10k - replaced with Starship
-      {
-        name = "vi-mode";
-        src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
+      # zsh-vi-mode removed from here - lazy loaded in base.zsh on Escape press
       {
         name = "zsh-fzf-history-search";
         src = pkgs.zsh-fzf-history-search;
