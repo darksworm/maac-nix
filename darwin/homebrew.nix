@@ -24,6 +24,10 @@
     # User owning the Homebrew prefix
     user = "ilmars";
 
+    # Disable automatic `eval "$(brew shellenv)"` in /etc/zshrc
+    # We set HOMEBREW_* env vars early in home.nix envExtra instead
+    enableZshIntegration = false;
+
     # Optional: Declarative tap management
     taps = {
       "homebrew/homebrew-core" = homebrew-core;

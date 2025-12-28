@@ -196,7 +196,7 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = true;  # Native zsh completion
+    enableCompletion = false;  # Already done in /etc/zshrc by nix-darwin
 
     autosuggestion = {
       enable = true;
