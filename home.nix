@@ -264,12 +264,12 @@
     color = true;
 
     pmodules = [
-      "syntax-highlighting"
-      "terminal"
-      "environment"
-      "autosuggestions"
-      "completion"
-      "utility"
+      "completion"        # Tab completion (compinit)
+      "syntax-highlighting" # Command coloring
+      # Removed: terminal (window title - minor feature)
+      # Removed: environment (Home Manager handles this)
+      # Removed: autosuggestions (duplicate - using Home Manager's)
+      # Removed: utility (custom aliases defined above)
     ];
 
     editor.keymap = "vi";
