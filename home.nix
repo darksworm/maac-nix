@@ -231,16 +231,7 @@
         src = ./zsh-config;
         file = "base.zsh";
       }
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = ./zsh-config;
-        file = "p10k.zsh";
-      }
+      # Removed powerlevel10k - replaced with Starship
       {
         name = "vi-mode";
         src = pkgs.zsh-vi-mode;
@@ -257,6 +248,66 @@
         file = "dev.zsh";
       }
     ];
+  };
+
+  # Starship prompt - fast, async, minimal
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      # Minimal, fast config
+      add_newline = false;
+
+      format = "$directory$git_branch$git_status$character";
+      right_format = "$kubernetes$aws$java$cmd_duration";
+
+      character = {
+        success_symbol = "[❯](green)";
+        error_symbol = "[❯](red)";
+        vimcmd_symbol = "[❮](yellow)";
+      };
+
+      directory = {
+        truncation_length = 3;
+        truncate_to_repo = true;
+        style = "blue bold";
+      };
+
+      git_branch = {
+        format = "[$branch]($style) ";
+        style = "purple";
+      };
+
+      git_status = {
+        format = "[$all_status$ahead_behind]($style) ";
+        style = "red";
+      };
+
+      kubernetes = {
+        disabled = false;
+        format = "[$symbol$context]($style) ";
+        style = "cyan";
+        symbol = "⎈ ";
+      };
+
+      aws = {
+        format = "[$symbol$profile]($style) ";
+        style = "yellow";
+        symbol = " ";
+      };
+
+      java = {
+        format = "[$symbol$version]($style) ";
+        style = "red";
+        symbol = " ";
+      };
+
+      cmd_duration = {
+        min_time = 2000;
+        format = "[$duration]($style) ";
+        style = "yellow";
+      };
+    };
   };
 
   programs.zsh.prezto = {
