@@ -193,7 +193,7 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = true;  # Native zsh completion (faster than Prezto)
+    enableCompletion = false;
 
     autosuggestion = {
       enable = true;
@@ -256,20 +256,22 @@
         src = ./zsh-config;
         file = "dev.zsh";
       }
-      # Fast syntax highlighting (faster than zsh-syntax-highlighting)
-      {
-        name = "fast-syntax-highlighting";
-        src = pkgs.zsh-fast-syntax-highlighting;
-        file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
-      }
     ];
   };
 
-  # Prezto disabled - using standalone plugins for speed
-  # programs.zsh.prezto = {
-  #   enable = true;
-  #   color = true;
-  #   pmodules = [ "completion" "syntax-highlighting" ];
-  #   editor.keymap = "vi";
-  # };
+  programs.zsh.prezto = {
+    enable = true;
+    color = true;
+
+    pmodules = [
+      "completion"        # Tab completion (compinit)
+      "syntax-highlighting" # Command coloring
+      # Removed: terminal (window title - minor feature)
+      # Removed: environment (Home Manager handles this)
+      # Removed: autosuggestions (duplicate - using Home Manager's)
+      # Removed: utility (custom aliases defined above)
+    ];
+
+    editor.keymap = "vi";
+  };
 }
