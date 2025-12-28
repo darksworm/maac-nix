@@ -17,7 +17,7 @@
               owner = "scottmckendry";
               repo = "cyberdream.nvim";
               rev = "main";
-              sha256 = "sha256-dyf3PURbg6sb9kUyU8EG/BpkD90xbHWVzeoWIS+nk9c=";
+              sha256 = "sha256-ZrkTbAVRVa6cUWHLg+65CJLbvVK3SlBWvGdQO08IM/8=";
             };
           };
           setup = ''
@@ -41,6 +41,41 @@
               },
             })
             vim.cmd("colorscheme cyberdream")
+          '';
+        };
+
+        mason-nvim = {
+          package = pkgs.vimPlugins.mason-nvim;
+        };
+
+        mason-lspconfig = {
+          package = pkgs.vimPlugins.mason-lspconfig-nvim;
+        };
+
+        kotlin-nvim = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "kotlin-nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "AlexandrosAlexiou";
+              repo = "kotlin.nvim";
+              rev = "main";
+              sha256 = "sha256-E/TyrBhqtNQyiNE3hNOSUC/7YGDgro7fOgdSHpjkI0k=";
+            };
+          };
+          # Setup all three in correct order here
+          setup = ''
+            require("mason").setup({
+              PATH = "append",  -- Append to PATH so jenv's java takes precedence
+            })
+            require("mason-lspconfig").setup({
+              automatic_installation = true,
+            })
+            require("kotlin").setup({
+              root_markers = { "gradlew", ".git", "settings.gradle", "settings.gradle.kts" },
+              inlay_hints = {
+                enabled = true,
+              },
+            })
           '';
         };
       };
@@ -124,7 +159,7 @@
         html.enable = true;
         sql.enable = true;
         java.enable = true;
-        kotlin.enable = true;
+        kotlin.enable = false; # Using kotlin.nvim + Mason for JetBrains kotlin-lsp
         php.enable = true;
         ts.enable = true;
         go.enable = true;
@@ -169,6 +204,15 @@
       filetree = {
         neo-tree = {
           enable = true;
+          setupOpts = {
+            filesystem = {
+              filtered_items = {
+                visible = true;
+                hide_dotfiles = false;
+                hide_gitignored = false;
+              };
+            };
+          };
         };
       };
 

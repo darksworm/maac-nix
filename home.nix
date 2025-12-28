@@ -35,6 +35,7 @@
     # git gud
     pkgs.gh
     pkgs.git-absorb
+    pkgs.git-lfs
     pkgs.mr
 
     pkgs.ffmpeg
@@ -203,8 +204,14 @@
       extended = true;
     };
 
+    # TEMPORARY: zsh profiling - run `zprof` after shell starts to see results
+    initExtraFirst = ''
+      zmodload zsh/zprof
+    '';
+
     initContent = ''
       export GPG_TTY=$(tty)
+      export ENABLE_LSP_TOOL=1
     '';
 
     shellAliases = {

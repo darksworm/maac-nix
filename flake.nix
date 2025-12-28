@@ -66,6 +66,11 @@
       flake = false;
     };
 
+    rossmacarthur-tap = {
+      url = "github:rossmacarthur/homebrew-tap";
+      flake = false;
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
@@ -88,6 +93,7 @@
     ovensh-bun,
     alajmo-tap,
     charmbracelet-tap,
+    rossmacarthur-tap,
     ...
   }: let
     configuration = {pkgs, config, ...}: {
@@ -182,11 +188,14 @@
           "oven-sh/bun/bun"
           "alajmo/mani/mani"
           "charmbracelet/tap/crush"
+          "rossmacarthur/tap/kb-remap"
 
+          "act"
           "wireshark"
           "gpg2"
           "gnupg"
           "pinentry-mac"
+          "kotlin-language-server"
         ];
 
         caskArgs = {
@@ -217,6 +226,8 @@
           "karabiner-elements"
           "spotify"
           "steam"
+          "zen-browser"
+          "openmtp"
 
           "nikitabobko/tap/aerospace"
           "ghostty"
@@ -227,6 +238,7 @@
           "argonaut"
           "adobe-acrobat-reader"
           "wireshark"
+          "linearmouse"
         ];
       };
     };
@@ -253,6 +265,7 @@
           inherit ovensh-bun;
           inherit alajmo-tap;
           inherit charmbracelet-tap;
+          inherit rossmacarthur-tap;
         })
 
         mac-app-util.darwinModules.default

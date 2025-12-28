@@ -11,6 +11,7 @@
   ovensh-bun,
   alajmo-tap,
   charmbracelet-tap,
+  rossmacarthur-tap,
   ...
 }: {
   nix-homebrew = {
@@ -36,6 +37,7 @@
       "oven-sh/homebrew-bun" = ovensh-bun;
       "alajmo/homebrew-mani" = alajmo-tap;
       "charmbracelet/homebrew-tap" = charmbracelet-tap;
+      "rossmacarthur/homebrew-tap" = rossmacarthur-tap;
     };
 
     # Optional: Enable fully-declarative tap management
