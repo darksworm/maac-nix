@@ -1,5 +1,7 @@
 export EDITOR=nvim
 
+# Homebrew env is set in envExtra (runs in .zshenv before /etc/zshrc)
+
 # Start with basic vi mode (instant)
 bindkey -v
 

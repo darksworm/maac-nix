@@ -207,6 +207,16 @@
       extended = true;
     };
 
+    # Set Homebrew env early (in .zshenv) to skip slow `brew shellenv` in /etc/zshrc
+    envExtra = ''
+      export HOMEBREW_PREFIX="/opt/homebrew"
+      export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+      export HOMEBREW_REPOSITORY="/opt/homebrew/Library/.homebrew-is-managed-by-nix"
+      export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+      export MANPATH="/opt/homebrew/share/man''${MANPATH+:$MANPATH}:"
+      export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}"
+    '';
+
     initContent = ''
       export GPG_TTY=$(tty)
       export ENABLE_LSP_TOOL=1
