@@ -193,7 +193,7 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
+    enableCompletion = true;  # Native zsh completion
 
     autosuggestion = {
       enable = true;
@@ -203,11 +203,6 @@
       size = 10000;
       extended = true;
     };
-
-    # TEMPORARY: zsh profiling - run `zprof` after shell starts to see results
-    initExtraFirst = ''
-      zmodload zsh/zprof
-    '';
 
     initContent = ''
       export GPG_TTY=$(tty)
@@ -246,6 +241,12 @@
         name = "dev";
         src = ./zsh-config;
         file = "dev.zsh";
+      }
+      # Fast syntax highlighting (Prezto's is slower)
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.zsh-fast-syntax-highlighting;
+        file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
       }
     ];
   };
@@ -310,19 +311,6 @@
     };
   };
 
-  programs.zsh.prezto = {
-    enable = true;
-    color = true;
-
-    pmodules = [
-      "completion"        # Tab completion (compinit)
-      "syntax-highlighting" # Command coloring
-      # Removed: terminal (window title - minor feature)
-      # Removed: environment (Home Manager handles this)
-      # Removed: autosuggestions (duplicate - using Home Manager's)
-      # Removed: utility (custom aliases defined above)
-    ];
-
-    editor.keymap = "vi";
-  };
+  # Prezto disabled - using standalone plugins instead
+  # programs.zsh.prezto.enable = false;
 }
