@@ -196,6 +196,7 @@
           "gnupg"
           "pinentry-mac"
           "kotlin-language-server"
+          "httpie"
         ];
 
         caskArgs = {
@@ -239,14 +240,13 @@
           "adobe-acrobat-reader"
           "wireshark"
           "linearmouse"
+          "prismlauncher"
         ];
       };
     };
   in {
     darwinConfigurations."maac" = nix-darwin.lib.darwinSystem {
       modules = [
-        nvf.nixosModules.default
-
         ./darwin
 
         configuration
@@ -277,6 +277,7 @@
           home-manager.users.ilmars = import ./home.nix;
           home-manager.sharedModules = [
             mac-app-util.homeManagerModules.default
+            nvf.homeManagerModules.default
           ];
         }
       ];
