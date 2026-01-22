@@ -26,7 +26,15 @@ direnv-init() {
   fi
 }
 
-eval "$(zoxide init zsh)"
+# Cache zoxide init output (avoids ~240ms subprocess call on cold cache)
+_zoxide_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide-init.zsh"
+if [[ ! -f "$_zoxide_cache" ]]; then
+  mkdir -p "${_zoxide_cache:h}"
+  zoxide init zsh > "$_zoxide_cache"
+  zcompile "$_zoxide_cache"
+fi
+source "$_zoxide_cache"
+unset _zoxide_cache
 
 # Lazy-load fnm: only initialize when entering a directory with Node config
 _fnm_initialized=0
@@ -55,4 +63,18 @@ fnm-init() {
 for cmd in node npm npx yarn pnpm; do
   eval "${cmd}() { fnm-init; command ${cmd} \"\$@\" }"
 done
+
+# Claude Code: auto-install and run with Node 25
+claude() {
+  (
+    eval "$(fnm env --use-on-cd --shell zsh)" && fnm use 25 && {
+      if command -v claude &>/dev/null; then
+        npm install -g @anthropic-ai/claude-code &>/dev/null &
+        command claude "$@"
+      else
+        npm install -g @anthropic-ai/claude-code && command claude "$@"
+      fi
+    }
+  )
+}
 
