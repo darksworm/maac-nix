@@ -195,7 +195,6 @@
           "gpg2"
           "gnupg"
           "pinentry-mac"
-          "kotlin-language-server"
           "httpie"
         ];
 
@@ -237,7 +236,6 @@
 
           "traefiktop"
           "argonaut"
-          "adobe-acrobat-reader"
           "wireshark"
           "linearmouse"
           "prismlauncher"
