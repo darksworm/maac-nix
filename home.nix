@@ -419,6 +419,10 @@
                 enabled = true,
               },
             })
+
+            -- Disable kotlin_lsp (from homebrew kotlin-language-server installed for Claude Code)
+            -- We use kotlin_ls (Mason JetBrains LSP) instead
+            vim.lsp.enable('kotlin_lsp', false)
           '';
         };
 
@@ -441,12 +445,24 @@
               rev = "main";
               sha256 = "sha256-xhT1i2vuYZaV+axbgqqklFK93kvOR+nmjPzqQPQyxLs=";
             };
+            # Skip require check - plugin depends on neotest being loaded first
+            doCheck = false;
           };
         };
 
-        # Neotest core
+        # Neotest core - using fixed version for subprocess treesitter parser issue
+        # PR #577: https://github.com/nvim-neotest/neotest/pull/577
         neotest = {
-          package = pkgs.vimPlugins.neotest;
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "neotest";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-neotest";
+              repo = "neotest";
+              rev = "500e18eac9ff62afb797895f5b82a4777414eae4";
+              sha256 = "02dymlgq6q5gwfmj4rfkmzbdmfb9pnn695xz89pwmk2a9xnji68j";
+            };
+            doCheck = false;
+          };
           after = ["nvim-nio" "plenary-nvim" "neotest-gradle"];
           setup = ''
             require("neotest").setup({
@@ -631,6 +647,11 @@
         enable = true;
         highlight.enable = true;
         context.enable = true;
+        # Add Kotlin grammar for neotest-gradle test discovery
+        # (kotlin.enable is false because we use kotlin.nvim + Mason for LSP)
+        grammars = [
+          pkgs.vimPlugins.nvim-treesitter-parsers.kotlin
+        ];
       };
 
       binds = {
