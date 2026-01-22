@@ -114,6 +114,17 @@
           ln -sf copytk.tmux tmux_copy_toolkit.tmux
         '';
       })
+      (tmuxPlugins.mkTmuxPlugin {
+        pluginName = "tmux-claude-indicators";
+        version = "unstable-2025-01-18";
+        rtpPath = "share/tmux-plugins/tmux-claude-indicators";
+        src = fetchFromGitHub {
+          owner = "itsdevcoffee";
+          repo = "tmux-claude-indicators";
+          rev = "a2f359cbc41fad696c984ad98dd92b83b64bc5af";
+          sha256 = "sha256-LLGBA9TD0BYFFCuenZ+p7p71+QW8a1GngG4z+Nu909Y=";
+        };
+      })
     ];
 
     extraConfig = ''
@@ -616,7 +627,11 @@
         nvimBufferline.enable = true;
       };
 
-      treesitter.context.enable = true;
+      treesitter = {
+        enable = true;
+        highlight.enable = true;
+        context.enable = true;
+      };
 
       binds = {
         whichKey.enable = true;
@@ -681,6 +696,7 @@
           enable = true;
           setupOpts = {
             completion.nvim-cmp = true;
+            legacy_commands = false;
             workspaces = [
               {
                 name = "2ndbrain";
