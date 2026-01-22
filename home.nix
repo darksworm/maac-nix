@@ -410,6 +410,41 @@
             })
           '';
         };
+
+        # Neotest dependencies
+        nvim-nio = {
+          package = pkgs.vimPlugins.nvim-nio;
+        };
+
+        plenary-nvim = {
+          package = pkgs.vimPlugins.plenary-nvim;
+        };
+
+        # Kotlin/Java test adapter (supports Gradle projects)
+        neotest-gradle = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "neotest-gradle";
+            src = pkgs.fetchFromGitHub {
+              owner = "weilbith";
+              repo = "neotest-gradle";
+              rev = "main";
+              sha256 = "sha256-xhT1i2vuYZaV+axbgqqklFK93kvOR+nmjPzqQPQyxLs=";
+            };
+          };
+        };
+
+        # Neotest core
+        neotest = {
+          package = pkgs.vimPlugins.neotest;
+          after = ["nvim-nio" "plenary-nvim" "neotest-gradle"];
+          setup = ''
+            require("neotest").setup({
+              adapters = {
+                require("neotest-gradle"),
+              },
+            })
+          '';
+        };
       };
 
       keymaps = [
@@ -438,6 +473,35 @@
           key = "<leader>o";
           mode = ["n"];
           action = "<Cmd>Telescope buffers<CR>";
+        }
+        # Neotest keymaps
+        {
+          key = "<leader>tr";
+          mode = ["n"];
+          action = ":lua require('neotest').run.run()<CR>";
+          silent = true;
+          desc = "Run nearest test";
+        }
+        {
+          key = "<leader>tf";
+          mode = ["n"];
+          action = ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>";
+          silent = true;
+          desc = "Run file tests";
+        }
+        {
+          key = "<leader>ts";
+          mode = ["n"];
+          action = ":lua require('neotest').summary.toggle()<CR>";
+          silent = true;
+          desc = "Toggle test summary";
+        }
+        {
+          key = "<leader>to";
+          mode = ["n"];
+          action = ":lua require('neotest').output.open({ enter = true })<CR>";
+          silent = true;
+          desc = "Show test output";
         }
       ];
 
