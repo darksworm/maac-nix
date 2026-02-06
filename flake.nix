@@ -239,6 +239,7 @@
           "wireshark"
           "linearmouse"
           "prismlauncher"
+          "ungoogled-chromium"
         ];
       };
     };

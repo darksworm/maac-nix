@@ -1,4 +1,8 @@
 {pkgs, lib, ...}: {
+  imports = [
+    ./chromium-extensions.nix
+  ];
+  
   # sudo with touch id (wow)
   security.pam.services.sudo_local.touchIdAuth = true;
 
