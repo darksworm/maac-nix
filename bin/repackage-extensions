@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+# Repackage Chrome extensions with modified IDs to bypass MDM blocking
+set -e
+
+EXTENSIONS_DIR="$HOME/Downloads/chromium-extensions"
+MODIFIED_DIR="$EXTENSIONS_DIR/modified"
+mkdir -p "$MODIFIED_DIR"
+
+echo "🔧 Repackaging extensions with modified IDs..."
+echo ""
+
+# Function to unpack and modify a CRX file
+repackage_extension() {
+    local crx_file="$1"
+    local name="$2"
+    
+    if [ ! -f "$crx_file" ]; then
+        echo "  ⚠️  $crx_file not found, skipping..."
+        return
+    fi
+    
+    echo "📦 Processing $name..."
+    
+    # Create temp directory for this extension
+    local temp_dir="$MODIFIED_DIR/temp_$name"
+    rm -rf "$temp_dir"
+    mkdir -p "$temp_dir"
+    
+    # CRX files are basically zip files with a special header
+    # We need to skip the CRX header and extract the zip content
+    
+    # Try to extract as zip (CRX v2/v3 have different headers)
+    # First, try to find where the ZIP content starts (PK signature)
+    local zip_offset=$(od -An -tx1 -w1 -v "$crx_file" | grep -n "50" | head -1 | cut -d: -f1)
+    
+    if [ -z "$zip_offset" ]; then
+        echo "  ⚠️  Could not find ZIP content in $name, trying direct unzip..."
+        unzip -q "$crx_file" -d "$temp_dir" 2>/dev/null || {
+            echo "  ❌ Failed to extract $name"
+            return
+        }
+    else
+        # Extract ZIP content starting from the offset
+        tail -c +$zip_offset "$crx_file" > "$temp_dir/extension.zip"
+        unzip -q "$temp_dir/extension.zip" -d "$temp_dir" 2>/dev/null || {
+            echo "  ❌ Failed to extract $name"
+            return
+        }
+        rm "$temp_dir/extension.zip"
+    fi
+    
+    # Modify manifest.json to remove update_url (prevents auto-updates and checks)
+    if [ -f "$temp_dir/manifest.json" ]; then
+        # Remove update_url and key fields which tie it to the Chrome Web Store
+        cat "$temp_dir/manifest.json" | \
+            python3 -c "import sys, json; \
+            data = json.load(sys.stdin); \
+            data.pop('update_url', None); \
+            data.pop('key', None); \
+            data.pop('differential_fingerprint', None); \
+            json.dump(data, sys.stdout, indent=2)" > "$temp_dir/manifest_new.json"
+        mv "$temp_dir/manifest_new.json" "$temp_dir/manifest.json"
+        
+        echo "  ✅ Modified manifest.json for $name"
+    fi
+    
+    # Move to final location (as unpacked extension)
+    local final_dir="$MODIFIED_DIR/$name"
+    rm -rf "$final_dir"
+    mv "$temp_dir" "$final_dir"
+    
+    echo "  ✅ Extension ready at: $final_dir"
+}
+
+# Process each extension
+echo "Processing extensions..."
+echo ""
+
+# First, ensure we have the web store extension
+if [ -f "$EXTENSIONS_DIR/chromium-web-store.crx" ]; then
+    repackage_extension "$EXTENSIONS_DIR/chromium-web-store.crx" "chromium-web-store"
+fi
+
+# Process other extensions
+for crx_file in "$EXTENSIONS_DIR"/*.crx; do
+    if [ -f "$crx_file" ]; then
+        filename=$(basename "$crx_file" .crx)
+        if [ "$filename" != "chromium-web-store" ]; then
+            repackage_extension "$crx_file" "$filename"
+        fi
+    fi
+done
+
+echo ""
+echo "✅ Extensions have been unpacked and modified!"
+echo ""
+echo "📝 Installation Instructions:"
+echo "=============================="
+echo ""
+echo "1. Open Chromium and go to: chrome://extensions"
+echo "2. Enable 'Developer mode' (toggle in top right)"
+echo "3. Click 'Load unpacked' button"
+echo "4. Select each folder from: $MODIFIED_DIR"
+echo ""
+echo "The extensions are now loaded as unpacked developer extensions,"
+echo "which bypasses the MDM blocking since they have no store IDs."
+echo ""
+echo "Available extensions:"
+ls -1 "$MODIFIED_DIR" | grep -v "^temp_" | sed 's/^/  • /'
+
+# Open the modified extensions folder
+open "$MODIFIED_DIR"

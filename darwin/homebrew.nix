@@ -12,6 +12,8 @@
   alajmo-tap,
   charmbracelet-tap,
   rossmacarthur-tap,
+  argoproj-tap,
+  hamed-elfayome-claude-usage,
   ...
 }: {
   nix-homebrew = {
@@ -42,6 +44,8 @@
       "alajmo/homebrew-mani" = alajmo-tap;
       "charmbracelet/homebrew-tap" = charmbracelet-tap;
       "rossmacarthur/homebrew-tap" = rossmacarthur-tap;
+      "argoproj/homebrew-tap" = argoproj-tap;
+      "hamed-elfayome/homebrew-claude-usage" = hamed-elfayome-claude-usage;
     };
 
     # Optional: Enable fully-declarative tap management

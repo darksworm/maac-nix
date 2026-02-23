@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -e
+
+EXTENSIONS_DIR="$HOME/Downloads/chromium-extensions"
+cd "$EXTENSIONS_DIR"
+
+echo "📦 Downloading vertical tab extensions..."
+echo ""
+
+# Extension IDs for vertical tab extensions
+declare -A vertical_tabs=(
+    ["vertical-tabs"]="pddljdmihkpdfpkgmbhdomeeifpklgnm"  # Vertical Tabs by efthimis
+    ["tree-tabs"]="ciobciogocnlkhaikijinjpmobiljnfp"      # Tree Tabs
+    ["sidebar-tabs"]="noanomfagpfapehkcdmliiijbfffihnn"   # Sidebar Tabs
+)
+
+# Download each extension
+for name in "${!vertical_tabs[@]}"; do
+    id="${vertical_tabs[$name]}"
+    echo "Downloading $name..."
+    
+    # Chrome Web Store CRX download URL
+    CRX_URL="https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=120.0&x=id%3D${id}%26installsource%3Dondemand%26uc"
+    
+    curl -L -o "${name}.crx" "$CRX_URL" 2>/dev/null || echo "  ⚠️  Failed to download $name"
+done
+
+echo ""
+echo "Unpacking extensions..."
+
+# Unpack each extension
+for name in "${!vertical_tabs[@]}"; do
+    if [ -f "${name}.crx" ]; then
+        echo "Unpacking $name..."
+        python3 ~/.config/nix/bin/unpack-crx.py "${name}.crx" "modified/${name}" 2>/dev/null || echo "  ⚠️  Failed to unpack $name"
+    fi
+done
+
+echo ""
+echo "✅ Vertical tab extensions ready!"
+echo ""
+echo "Available extensions in $EXTENSIONS_DIR/modified/:"
+ls -1 modified/ | grep -E "vertical|tree|sidebar" | sed 's/^/  • /'
+echo ""
+echo "To install: Go to chrome://extensions, enable Developer Mode,"
+echo "click 'Load unpacked' and select the extension folder."

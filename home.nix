@@ -218,12 +218,14 @@
 
     # Set Homebrew env early (in .zshenv) to skip slow `brew shellenv` in /etc/zshrc
     envExtra = ''
+      export PATH="$HOME/.local/bin:$PATH"
       export HOMEBREW_PREFIX="/opt/homebrew"
       export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
       export HOMEBREW_REPOSITORY="/opt/homebrew/Library/.homebrew-is-managed-by-nix"
       export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
       export MANPATH="/opt/homebrew/share/man''${MANPATH+:$MANPATH}:"
       export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}"
+      export OPENROUTER_API_KEY=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
     '';
 
     initContent = lib.mkMerge [
@@ -360,7 +362,7 @@
               owner = "scottmckendry";
               repo = "cyberdream.nvim";
               rev = "main";
-              sha256 = "sha256-EJ6D9IS5ZwOgC44Nr+gQCK+audxBPEpGVOWhIGSe0Tc=";
+              sha256 = "sha256-xlvVSoT/odV/mk7lPQn+13RZDSrVJVB8SNs4u7v6LLk=";
             };
           };
           setup = ''
@@ -402,7 +404,7 @@
               owner = "AlexandrosAlexiou";
               repo = "kotlin.nvim";
               rev = "main";
-              sha256 = "sha256-ZrkTbAVRVa6cUWHLg+65CJLbvVK3SlBWvGdQO08IM/8=";
+              sha256 = "sha256-/9woAMFFxD9P8zudx7rACcma5Z/eLBVcc/rs5qMqZp0=";
             };
           };
           # Setup all three in correct order here
@@ -472,6 +474,45 @@
             })
           '';
         };
+
+        # Claude Code integration - enables Claude CLI to interact with Neovim
+        # (selection sharing, file context, direct edits, diagnostics access)
+        claudecode-nvim = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "claudecode.nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "coder";
+              repo = "claudecode.nvim";
+              rev = "main";
+              sha256 = "sha256-B6BA+3h7RLmk+zk6O365DmY06ALdbbkFBmOaRH9muog=";
+            };
+          };
+          setup = ''
+            require("claudecode").setup({})
+          '';
+        };
+
+        # Auto-session - automatic session save/restore per directory
+        auto-session = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "auto-session";
+            src = pkgs.fetchFromGitHub {
+              owner = "rmagatti";
+              repo = "auto-session";
+              rev = "v2.5.1";
+              sha256 = "sha256-tXGqwkzgf6De6SWN/WSP1WMl2aIChSmaQVHLQG+AwZU=";
+            };
+            # Skip require check - session-lens modules depend on telescope being loaded first
+            doCheck = false;
+          };
+          setup = ''
+            require("auto-session").setup({
+              auto_restore = true,
+              auto_save = true,
+              suppressed_dirs = { "~/", "~/Downloads", "/" },
+            })
+          '';
+        };
       };
 
       keymaps = [
@@ -529,6 +570,28 @@
           action = ":lua require('neotest').output.open({ enter = true })<CR>";
           silent = true;
           desc = "Show test output";
+        }
+        {
+          key = "<leader>tp";
+          mode = ["n"];
+          action = ":lua require('neotest').output_panel.toggle()<CR>";
+          silent = true;
+          desc = "Toggle output panel";
+        }
+        # Claude Code keymaps
+        {
+          key = "<leader>cc";
+          mode = ["n"];
+          action = ":ClaudeCode<CR>";
+          silent = true;
+          desc = "Toggle Claude Code";
+        }
+        {
+          key = "<leader>cs";
+          mode = ["v"];
+          action = ":ClaudeCodeSend<CR>";
+          silent = true;
+          desc = "Send selection to Claude";
         }
       ];
 

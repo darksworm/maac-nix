@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# Manual extension installer for ungoogled-chromium
+# Since ungoogled-chromium doesn't support automatic extension installation,
+# this script helps download and prepare extensions for manual installation
+
+set -e
+
+EXTENSIONS_DIR="$HOME/Downloads/chromium-extensions"
+mkdir -p "$EXTENSIONS_DIR"
+
+echo "📦 Downloading Chromium extensions for manual installation..."
+echo ""
+
+# Extension list with names and IDs
+declare -A extensions=(
+    ["uBlock Origin"]="cjpalhdlnbpafiamejdnhcphjbkeiagm"
+    ["Vimium"]="dbepggeogbaibhgnhhndojpepiihcmeb"
+    ["1Password"]="aeblfdkhhhdcdjpifhhbdiojplfjncoa"
+    ["Dark Reader"]="eimadpbcbfnmbkopoojfekhnkhdbieeh"
+    ["Chromium Web Store"]="ocaahdebbfolfmndjeplogmgcagdmblk"
+)
+
+echo "First, you need to install the Chromium Web Store extension to enable other extensions:"
+echo ""
+
+# Download Chromium Web Store extension from GitHub
+WEBSTORE_URL="https://github.com/NeverDecaf/chromium-web-store/releases/latest/download/Chromium.Web.Store.crx"
+echo "1️⃣  Downloading Chromium Web Store..."
+curl -L -o "$EXTENSIONS_DIR/chromium-web-store.crx" "$WEBSTORE_URL"
+echo "   ✅ Downloaded to: $EXTENSIONS_DIR/chromium-web-store.crx"
+echo ""
+
+echo "📝 Installation Instructions:"
+echo "=============================="
+echo ""
+echo "1. Open Chromium and go to: chrome://extensions"
+echo "2. Enable 'Developer mode' (toggle in top right)"
+echo "3. Drag and drop this file into the browser:"
+echo "   $EXTENSIONS_DIR/chromium-web-store.crx"
+echo ""
+echo "4. Once installed, you can install other extensions from the Chrome Web Store:"
+echo ""
+
+for name in "${!extensions[@]}"; do
+    if [ "$name" != "Chromium Web Store" ]; then
+        id="${extensions[$name]}"
+        echo "   • $name:"
+        echo "     https://chrome.google.com/webstore/detail/$id"
+    fi
+done
+
+echo ""
+echo "5. Or install them via direct CRX download (if Web Store doesn't work):"
+echo ""
+
+# Generate download URLs for other extensions
+for name in "${!extensions[@]}"; do
+    if [ "$name" != "Chromium Web Store" ]; then
+        id="${extensions[$name]}"
+        echo "   Downloading $name..."
+        # Using Chrome Web Store CRX download URL
+        CRX_URL="https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=120.0&x=id%3D${id}%26installsource%3Dondemand%26uc"
+        filename=$(echo "$name" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+        curl -L -o "$EXTENSIONS_DIR/${filename}.crx" "$CRX_URL" 2>/dev/null || echo "   ⚠️  Failed to download $name"
+    fi
+done
+
+echo ""
+echo "✅ Extensions downloaded to: $EXTENSIONS_DIR"
+echo ""
+echo "To install each extension:"
+echo "1. Keep Developer mode enabled in chrome://extensions"
+echo "2. Drag and drop each .crx file into the browser"
+echo ""
+echo "Note: Some extensions may need to be installed from the Chrome Web Store"
+echo "after installing the Chromium Web Store extension first."
+
+# Open the downloads folder
+open "$EXTENSIONS_DIR"
+
+# Open Chromium extensions page
+open -a "Chromium" "chrome://extensions"

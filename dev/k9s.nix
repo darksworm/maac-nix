@@ -1,13 +1,26 @@
-{ ... }:
+{ pkgs, ... }:
 let
   oxocarbon = (import ../theme.nix).oxocarbon.dark;
+  
+  # Pin k9s to version 0.50.15 due to performance issues in newer versions
+  k9s-0_50_15 = pkgs.k9s.overrideAttrs (oldAttrs: rec {
+    version = "0.50.15";
+    src = pkgs.fetchFromGitHub {
+      owner = "derailed";
+      repo = "k9s";
+      rev = "v${version}";
+      sha256 = "sha256-rTG2UtrVLlF+dFFJiNErYG6GL4ZQdwPlj1kdaLxh6TI=";
+    };
+    vendorHash = "sha256-Djz23/Ef7T7giE/KDsnbWnihwW37o40jevwVt8CbiQE=";
+  });
 in
 {
   programs.k9s = {
     enable = true;
+    package = k9s-0_50_15;
     settings = {
       k9s = {
-        logoless = true;
+        # logoless option has been deprecated
       };
     };
 

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Fast rebuild - skips some checks, no GC
+set -e
+darwin-rebuild switch --flake ~/.config/nix --fast

@@ -71,6 +71,16 @@
       flake = false;
     };
 
+    argoproj-tap = {
+      url = "github:argoproj/homebrew-tap";
+      flake = false;
+    };
+
+    hamed-elfayome-claude-usage = {
+      url = "github:hamed-elfayome/homebrew-claude-usage";
+      flake = false;
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
@@ -94,6 +104,8 @@
     alajmo-tap,
     charmbracelet-tap,
     rossmacarthur-tap,
+    argoproj-tap,
+    hamed-elfayome-claude-usage,
     ...
   }: let
     configuration = {pkgs, config, ...}: {
@@ -172,6 +184,7 @@
           # k8s crap for work
           "helm"
           "kubelogin"
+          "kubectl-argo-rollouts"
 
           "ca-certificates"
           "cryptography"
@@ -240,6 +253,8 @@
           "linearmouse"
           "prismlauncher"
           "ungoogled-chromium"
+          "keepingyouawake"
+          "hamed-elfayome/claude-usage/claude-usage-tracker"
         ];
       };
     };
@@ -265,6 +280,8 @@
           inherit alajmo-tap;
           inherit charmbracelet-tap;
           inherit rossmacarthur-tap;
+          inherit argoproj-tap;
+          inherit hamed-elfayome-claude-usage;
         })
 
         mac-app-util.darwinModules.default

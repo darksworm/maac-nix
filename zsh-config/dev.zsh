@@ -64,17 +64,4 @@ for cmd in node npm npx yarn pnpm; do
   eval "${cmd}() { fnm-init; command ${cmd} \"\$@\" }"
 done
 
-# Claude Code: auto-install and run with Node 25
-claude() {
-  (
-    eval "$(fnm env --use-on-cd --shell zsh)" && fnm use 25 && {
-      if command -v claude &>/dev/null; then
-        npm install -g @anthropic-ai/claude-code &>/dev/null &
-        command claude "$@"
-      else
-        npm install -g @anthropic-ai/claude-code && command claude "$@"
-      fi
-    }
-  )
-}
 
